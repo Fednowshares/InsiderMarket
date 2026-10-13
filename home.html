@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | My Website</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #24344d;
+      background: #f5f8fc;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: white;
+      box-shadow: 0 2px 10px #00000008;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #103570;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #34445c;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      max-width: 1050px;
+      margin: 50px auto;
+      padding: 50px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .hero-content {
+      max-width: 550px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: #103570;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #64748b;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 14px 24px;
+      background: #528fe0;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .features {
+      max-width: 1050px;
+      margin: 0 auto 50px;
+      padding: 0 25px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 24px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 20px #00000006;
+    }
+
+    .feature h3 {
+      color: #103570;
+      margin-top: 0;
+    }
+
+    .feature p {
+      color: #64748b;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: white;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 18px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        margin: 15px auto;
+        padding: 35px 22px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">My Website</div>
+
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="index.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Your Financial Dashboard</h1>
+
+        <p>
+          Manage your account, view your wallet balances,
+          explore investment options, and track your
+          transactions from one convenient place.
+        </p>
+
+        <a class="btn" href="index.html">
+          Open Dashboard
+        </a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Account Overview</h3>
+        <p>View your account information and wallet balances.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Investments</h3>
+        <p>Explore investment options available on your platform.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Transactions</h3>
+        <p>Access your transaction history and account activity.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 My Website. All rights reserved.
+  </footer>
+
+</body>
+</html>
