@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Dashboard</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #103570;
+    --blue: #528fe0;
+    --purple: #565cf0;
+    --teal: #299e91;
+    --text: #566065;
+    --pale: #c4d2ec;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.topbar {
+    min-height: 100px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 8.5%;
+}
+
+.back {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--blue);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav button {
+    border: 0;
+    background: none;
+    color: #26343a;
+}
+
+.nav .home {
+    width: 48px;
+    height: 42px;
+    border-radius: 7px;
+    background: var(--blue);
+    color: #fff;
+    padding: 12px;
+}
+
+.nav .down,
+.nav .user {
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.page {
+    width: calc(100% - 42px);
+    max-width: 780px;
+    margin: 20px auto 0;
+}
+
+.balance {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 5px;
+    padding: 13px 16px 14px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.15;
+    margin: 7px 0 0;
+    font-weight: 750;
+    letter-spacing: -0.3px;
+}
+
+.tag {
+    background: #fff;
+    color: #101c22;
+    border-radius: 5px;
+    padding: 7px 11px;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.wallet {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+}
+
+.wallet:last-child {
+    margin-bottom: 0;
+}
+
+.icon {
+    width: 23px;
+    height: 23px;
+    flex-shrink: 0;
+    color: #d5e0f4;
+}
+
+.name {
+    flex: 1;
+    color: var(--pale);
+    font-size: clamp(17px, 4.1vw, 29px);
+    font-weight: 700;
+}
+
+.amount {
+    font-size: clamp(17px, 4.1vw, 29px);
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 10px 0 20px;
+}
+
+.action {
+    height: 47px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: clamp(16px, 4vw, 22px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.action svg {
+    width: 19px;
+    height: 19px;
+}
+
+.deposit {
+    background: var(--purple);
+}
+
+.invest {
+    background: var(--teal);
+}
+
+.menu {
+    border-top: 1px solid #eee;
+    padding: 24px 0 25px;
+}
+
+.item {
+    width: 100%;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 31px;
+    border: 0;
+    background: #fff;
+    text-align: left;
+    color: var(--text);
+    font-size: clamp(15px, 4vw, 19px);
+    font-weight: 750;
+}
+
+.item:active {
+    background: #fafafa;
+}
+
+.item-icon {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.arrow {
+    margin-left: auto;
+    color: var(--blue);
+    font-size: 16px;
+}
+
+.chat {
+    position: fixed;
+    right: 19px;
+    bottom: 35px;
+    width: 60px;
+    height: 60px;
+    border: 0;
+    border-radius: 50%;
+    background: #1760ed;
+    display: grid;
+    place-items: center;
+    z-index: 4;
+    box-shadow: 0 4px 15px #0002;
+}
+
+.bubble {
+    width: 30px;
+    height: 23px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+}
+
+.bubble::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    bottom: -3px;
+    width: 9px;
+    height: 9px;
+    background: #fff;
+    transform: rotate(30deg);
+}
+
+.online {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: #45d889;
+}
+
+.toast {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: #fff;
+    padding: 11px 16px;
+    border-radius: 7px;
+    z-index: 8;
+    font-size: 14px;
+}
+
+.toast.show {
+    display: block;
+}
+
+@media (max-width: 380px) {
+    .balance {
+        padding: 13px 12px 15px;
+    }
+
+    .name,
+    .amount {
+        font-size: 17px;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .action {
+        font-size: 16px;
+    }
+
+    .item {
+        padding: 0 20px;
+        font-size: 15px;
+    }
+
+    .nav {
+        gap: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <!-- Back to the previous page -->
+    <button class="back" aria-label="Go back"
+            onclick="history.back()">
+        <svg viewBox="0 0 24 24">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+    </button>
+
+    <nav class="nav">
+
+        <!-- FIXED: Home icon redirects to home.html -->
+        <button class="home" aria-label="Home"
+                onclick="window.location.href='home.html'">
+            <svg viewBox="0 0 24 24">
+                <path d="m3 10 9-7 9 7M5.5 9v12h13V9M9 21v-7h6v7"/>
+            </svg>
+        </button>
+
+        <button class="down" aria-label="Menu"
+                onclick="msg('Menu')">
+            <svg viewBox="0 0 24 24">
+                <path d="m5 9 7 7 7-7"/>
+            </svg>
+        </button>
+
+        <button class="user" aria-label="Profile"
+                onclick="msg('Profile')">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="7.5" r="4"/>
+                <path d="M4 21c.7-4.2 3.5-6.5 8-6.5s7.3 2.3 8 6.5"/>
+            </svg>
+        </button>
+
+    </nav>
+</header>
+
+<main class="page">
+
+    <section class="balance">
+
+        <div class="heading">
+            <h1>Account Balance</h1>
+            <span class="tag">WALLET</span>
+        </div>
+
+        <div class="wallet">
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 7V5a2 2 0 0 1 2-2h13v4M4 7h16a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V7h2Z"/>
+                    <path d="M16 12h6M18 12v.1"/>
+                </svg>
+            </span>
+            <span class="name">Main Wallet</span>
+            <strong class="amount">$100.00</strong>
+        </div>
+
+        <div class="wallet">
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="m2 8 10-6 10 6H2ZM4 21h16M6 10v8M10 10v8M14 10v8M18 10v8"/>
+                </svg>
+            </span>
+            <span class="name">Profit Wallet</span>
+            <strong class="amount">$5.00</strong>
+        </div>
+
+    </section>
+
+    <section class="actions">
+
+        <button class="action deposit" onclick="msg('Deposit')">
+            <svg viewBox="0 0 24 24">
+                <path d="M5 2h9l6 6v14H5zM14 2v6h6M12 11v7M9 14.5h6"/>
+            </svg>
+            Deposit
+        </button>
+
+        <button class="action invest" onclick="msg('Invest Now')">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 4v16H4V4h12M13 8l4 4-4 4M17 12H9"/>
+            </svg>
+            Invest Now
+        </button>
+
+    </section>
+
+    <section class="menu">
+
+        <!-- Dashboard stays on index.html -->
+        <button class="item"
+                onclick="window.location.href='index.html'">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/>
+                </svg>
+            </span>
+            <span>DASHBOARD</span>
+        </button>
+
+        <button class="item" onclick="msg('All Schema')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 3h18v18H3zM7 12l3 3 7-7"/>
+                </svg>
+            </span>
+            <span>ALL SCHEMA</span>
+        </button>
+
+        <button class="item" onclick="msg('Schema Logs')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M8 3h13v16M4 7h13v14H4z"/>
+                </svg>
+            </span>
+            <span>SCHEMA LOGS</span>
+        </button>
+
+        <button class="item" onclick="msg('All Transactions')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 8h18l-2 12H5L3 8ZM3 8l3-5h12l3 5"/>
+                </svg>
+            </span>
+            <span>ALL TRANSACTIONS</span>
+        </button>
+
+        <button class="item" onclick="msg('Add Money')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 2h9l6 6v14H5zM14 2v6h6M12 12v7M8.5 15.5h7"/>
+                </svg>
+            </span>
+            <span>ADD MONEY</span>
+        </button>
+
+        <button class="item" onclick="msg('Add Money Log')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 6h7l2 3h9v12H3zM12 12v6M9 15h6"/>
+                </svg>
+            </span>
+            <span>ADD MONEY LOG</span>
+        </button>
+
+        <button class="item" onclick="msg('Wallet Exchange')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 8a8 8 0 0 0-14-3L3 8M3 3v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5"/>
+                </svg>
+            </span>
+            <span>WALLET EXCHANGE</span>
+        </button>
+
+        <button class="item" onclick="msg('Send Money')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 4v16H4V4h12M13 8l4 4-4 4M17 12H9"/>
+                </svg>
+            </span>
+            <span>SEND MONEY</span>
+        </button>
+
+        <button class="item" onclick="msg('Send Money Log')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 19h12a4 4 0 0 0 .4-8A6.5 6.5 0 0 0 6 9.5 4.8 4.8 0 0 0 6 19Z"/>
+                </svg>
+            </span>
+            <span>SEND MONEY LOG</span>
+        </button>
+
+        <button class="item" onclick="msg('Withdraw')">
+            <span class="item-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="m2 8 10-6 10 6H2ZM4 21h16M6 10v8M10 10v8M14 10v8M18 10v8"/>
+                </svg>
+            </span>
+            <span>WITHDRAW</span>
+            <span class="arrow">▴</span>
+        </button>
+
+    </section>
+
+</main>
+
+<button class="chat" aria-label="Chat support"
+        onclick="msg('Chat support')">
+    <span class="bubble"></span>
+    <span class="online"></span>
+</button>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+let timer;
+
+function msg(text) {
+    const toast = document.getElementById('toast');
+
+    toast.textContent = text + ' selected';
+    toast.classList.add('show');
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 1800);
+}
+</script>
+
+</body>
+</html>
