@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Fednowshares </title>
+  <title>Home | Shares Market</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -12,7 +13,7 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color: #24344d;
       background: #f5f8fc;
     }
@@ -22,7 +23,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 18px 7%;
-      background: white;
+      background: #fff;
       box-shadow: 0 2px 10px #00000008;
     }
 
@@ -44,24 +45,32 @@
       font-size: 14px;
     }
 
+    nav a:hover {
+      color: #528fe0;
+    }
+
     .hero {
-      max-width: 1050px;
-      margin: 50px auto;
-      padding: 50px 25px;
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 35px 25px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px #00000006;
     }
 
     .hero-content {
-      max-width: 550px;
+      flex: 1;
+      min-width: 0;
     }
 
     .hero h1 {
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(30px, 5vw, 48px);
       line-height: 1.15;
-      margin-bottom: 18px;
+      margin: 0 0 18px;
       color: #103570;
     }
 
@@ -80,6 +89,36 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #103570;
+    }
+
+    /* YOUR GITHUB IMAGE */
+
+    .hero-image {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #e5edf8;
+    }
+
+    .image-error {
+      display: none;
+      padding: 15px;
+      color: #b42318;
+      background: #fff1f0;
+      border-radius: 6px;
+      font-size: 14px;
     }
 
     .features {
@@ -94,7 +133,7 @@
     .feature {
       padding: 24px;
       border-radius: 10px;
-      background: white;
+      background: #fff;
       box-shadow: 0 4px 20px #00000006;
     }
 
@@ -112,7 +151,7 @@
     footer {
       text-align: center;
       padding: 25px;
-      background: white;
+      background: #fff;
       color: #64748b;
       font-size: 13px;
     }
@@ -120,6 +159,10 @@
     @media (max-width: 650px) {
       header {
         padding: 18px;
+      }
+
+      .logo {
+        font-size: 19px;
       }
 
       nav {
@@ -131,12 +174,19 @@
       }
 
       .hero {
-        margin: 15px auto;
-        padding: 35px 22px;
+        margin: 18px 12px;
+        padding: 24px 18px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-image img {
+        height: 230px;
       }
 
       .features {
         grid-template-columns: 1fr;
+        padding: 0 18px;
       }
     }
   </style>
@@ -144,8 +194,10 @@
 
 <body>
 
+  <!-- WEBSITE HEADER -->
+
   <header>
-    <div class="logo">My Website</div>
+    <div class="logo">Shares Market</div>
 
     <nav>
       <a href="home.html">Home</a>
@@ -154,42 +206,83 @@
   </header>
 
   <main>
+
+    <!-- WELCOME SECTION -->
+
     <section class="hero">
+
       <div class="hero-content">
-        <h1>Welcome to Fednow Fancial Market</h1>
+
+        <h1>Invest in Your Future</h1>
 
         <p>
-          Manage your account, view your wallet balances,
-          explore investment options, and track your
-          transactions from one convenient place.
+          Explore the shares market, discover investment
+          opportunities, and manage your portfolio from
+          one convenient platform.
         </p>
 
         <a class="btn" href="index.html">
           Open Dashboard
         </a>
+
       </div>
+
+      <!-- IMAGE LINK INSERTED HERE -->
+
+      <div class="hero-image">
+
+        <img
+          id="marketImage"
+          src="https://raw.githubusercontent.com/Fednowshares/Insider-Market/397f2805a40a55e07f5c183572cdf075d6fd8702/PHkSFJedCKV-3JsFesovpAV6Zat1mdsGzD104U1lY2pmCEm9t5O-UsK4aVqdDIsjtffrvaixMu9go06MEPZBD-h3CbQEhPoNO69vzA-iIRz8P0PrOuxOo1JiPO_Rm1IKIu7e-XBtxKim6493fesoUb0ILDQkwJS3niELzZJLToxDDD8_Im2v_dGuukWiz57x.jpg"
+          alt="Shares Market financial image"
+          onerror="this.style.display='none'; document.getElementById('imageError').style.display='block';"
+        >
+
+        <p id="imageError" class="image-error">
+          The image could not load. Please check that the
+          GitHub image link is accessible.
+        </p>
+
+      </div>
+
     </section>
+
+    <!-- WEBSITE FEATURES -->
 
     <section class="features">
+
+      <div class="feature">
+        <h3>Market Insights</h3>
+        <p>
+          Explore shares market information and learn
+          about investment opportunities.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>Portfolio Management</h3>
+        <p>
+          Keep track of your portfolio and review
+          your investment activity.
+        </p>
+      </div>
+
       <div class="feature">
         <h3>Account Overview</h3>
-        <p>View your account information and wallet balances.</p>
+        <p>
+          Access your dashboard and review your
+          account balances and transactions.
+        </p>
       </div>
 
-      <div class="feature">
-        <h3>Investments</h3>
-        <p>Explore investment options available on your platform.</p>
-      </div>
-
-      <div class="feature">
-        <h3>Transactions</h3>
-        <p>Access your transaction history and account activity.</p>
-      </div>
     </section>
+
   </main>
 
+  <!-- WEBSITE FOOTER -->
+
   <footer>
-    © 2026 My Website. All rights reserved.
+    &copy; 2026 Shares Market. All rights reserved.
   </footer>
 
 </body>
