@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit - Fednow Shares</title>
+
+  <style>
+    :root {
+      --bg: #08111f;
+      --card: #111d30;
+      --border: #26364c;
+      --text: #f4f7fb;
+      --muted: #9aa9bd;
+      --green: #19c887;
+      --green-dark: #0b9e69;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 7%;
+      border-bottom: 1px solid var(--border);
+      background: #0b1627;
+    }
+
+    .brand {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .container {
+      width: min(100% - 32px, 560px);
+      margin: 42px auto;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 27px;
+    }
+
+    .heading h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .heading p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .coin-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .coin {
+      background: #0c1728;
+      border: 2px solid var(--border);
+      border-radius: 13px;
+      color: var(--text);
+      padding: 17px 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .coin:hover {
+      border-color: #54708f;
+    }
+
+    .coin.active {
+      border-color: var(--green);
+      background: #102b2b;
+    }
+
+    .coin-symbol {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .coin-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .btc-icon {
+      background: #f7931a;
+      color: white;
+    }
+
+    .usdt-icon {
+      background: #26a17b;
+      color: white;
+    }
+
+    .coin small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .payment-content {
+      text-align: center;
+    }
+
+    .selected-label {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .payment-content h2 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .instructions {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .qr-wrap {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px;
+      padding: 10px;
+      border-radius: 12px;
+      background: white;
+      display: grid;
+      place-items: center;
+    }
+
+    .qr-wrap img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+    }
+
+    .address-label {
+      text-align: left;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 9px;
+    }
+
+    .address-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: #091423;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .address-text {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e7edf7;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      border: 0;
+      background: var(--green);
+      color: #04150e;
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: #43e3a8;
+    }
+
+    .network-note {
+      text-align: left;
+      background: #17263a;
+      border-radius: 9px;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .warning {
+      color: #ffd28a;
+      background: #302619;
+      border: 1px solid #5d4525;
+      padding: 13px;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.7;
+      margin-top: 15px;
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--green);
+    }
+
+    .footer {
+      text-align: center;
+      color: #718198;
+      font-size: 12px;
+      padding: 15px 0 30px;
+    }
+
+    @media (max-width: 420px) {
+      .navbar {
+        padding: 17px 20px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .container {
+        margin-top: 28px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .coin {
+        padding: 13px 9px;
+      }
+
+      .address-box {
+        flex-wrap: wrap;
+      }
+
+      .copy-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a class="brand" href="index.html">Fednow Shares</a>
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </header>
+
+  <main class="container">
+
+    <div class="heading">
+      <h1>Make a Deposit</h1>
+      <p>Select your preferred cryptocurrency to view the payment instructions.</p>
+    </div>
+
+    <section class="panel">
+      <div class="section-title">01. Choose Payment Method</div>
+
+      <div class="coin-options">
+
+        <button class="coin active"
+                id="btcOption"
+                type="button"
+                aria-pressed="true"
+                onclick="selectCoin('BTC')">
+          <div class="coin-symbol">
+            <span class="coin-icon btc-icon">₿</span>
+            <span>Bitcoin</span>
+          </div>
+          <small>BTC Network</small>
+        </button>
+
+        <button class="coin"
+                id="usdtOption"
+                type="button"
+                aria-pressed="false"
+                onclick="selectCoin('USDT')">
+          <div class="coin-symbol">
+            <span class="coin-icon usdt-icon">₮</span>
+            <span>Tether</span>
+          </div>
+          <small>USDT Network</small>
+        </button>
+
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">02. Deposit Instructions</div>
+
+      <div class="payment-content">
+        <div class="selected-label" id="selectedLabel">
+          BITCOIN DEPOSIT
+        </div>
+
+        <h2 id="paymentTitle">Deposit BTC</h2>
+
+        <p class="instructions" id="instructions">
+          Send Bitcoin only to the BTC wallet address displayed below.
+        </p>
+
+        <div class="qr-wrap">
+          <img id="qrCode"
+               alt="QR code for the selected payment address"
+               src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=YOUR_BTC_ADDRESS_HERE">
+        </div>
+
+        <div class="address-label">Your deposit wallet address</div>
+
+        <div class="address-box">
+          <div class="address-text" id="walletAddress">
+            YOUR_BTC_ADDRESS_HERE
+          </div>
+
+          <button class="copy-btn"
+                  type="button"
+                  onclick="copyAddress()">
+            Copy Address
+          </button>
+        </div>
+
+        <div class="network-note" id="networkNote">
+          <strong>Network:</strong> Bitcoin (BTC).<br>
+          Make sure you select the correct network before sending.
+        </div>
+
+        <div class="warning">
+          <strong>Important:</strong> Always verify the wallet address
+          before sending funds. Cryptocurrency transactions are generally
+          irreversible. Do not send funds until you have replaced the
+          example addresses with your verified wallet addresses.
+        </div>
+
+        <div class="status" id="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> Fednow Shares. All rights reserved.
+    </div>
+
+  </main>
+
+  <script>
+    /*
+      =========================================
+      EDIT YOUR PAYMENT ADDRESSES HERE
+      =========================================
+
+      Replace both example values with your
+      verified wallet addresses before publishing.
+
+      For USDT, specify the exact network you support.
+      The address and network must match.
+    */
+
+    const PAYMENT_CONFIG = {
+      BTC: {
+        address: "YOUR_BTC_ADDRESS_HERE",
+        network: "Bitcoin (BTC)",
+        title: "Deposit BTC",
+        label: "BITCOIN DEPOSIT",
+        instructions:
+          "Send Bitcoin only to the BTC wallet address displayed below."
+      },
+
+      USDT: {
+        address: "YOUR_USDT_ADDRESS_HERE",
+        network: "USDT — SET YOUR NETWORK HERE",
+        title: "Deposit USDT",
+        label: "USDT DEPOSIT",
+        instructions:
+          "Send USDT only after confirming that the selected network matches your wallet."
+      }
+    };
+
+    let selectedCoin = "BTC";
+
+    function selectCoin(coin) {
+      if (!PAYMENT_CONFIG[coin]) return;
+
+      selectedCoin = coin;
+      const payment = PAYMENT_CONFIG[coin];
+
+      document.getElementById("btcOption")
+        .classList.toggle("active", coin === "BTC");
+
+      document.getElementById("usdtOption")
+        .classList.toggle("active", coin === "USDT");
+
+      document.getElementById("btcOption")
+        .setAttribute("aria-pressed", String(coin === "BTC"));
+
+      document.getElementById("usdtOption")
+        .setAttribute("aria-pressed", String(coin === "USDT"));
+
+      document.getElementById("selectedLabel").textContent =
+        payment.label;
+
+      document.getElementById("paymentTitle").textContent =
+        payment.title;
+
+      document.getElementById("instructions").textContent =
+        payment.instructions;
+
+      document.getElementById("walletAddress").textContent =
+        payment.address;
+
+      document.getElementById("networkNote").innerHTML =
+        "<strong>Network:</strong> " + escapeHTML(payment.network) +
+        ".<br>Verify the network before sending your cryptocurrency.";
+
+      document.getElementById("qrCode").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=" +
+        encodeURIComponent(payment.address);
+
+      document.getElementById("status").textContent = "";
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, function(character) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[character];
+      });
+    }
+
+    async function copyAddress() {
+      const address = PAYMENT_CONFIG[selectedCoin].address;
+      const status = document.getElementById("status");
+
+      if (
+        !address ||
+        address.startsWith("YOUR_") ||
+        address.includes("SET YOUR NETWORK")
+      ) {
+        status.textContent =
+          "The wallet address has not been configured yet.";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(address);
+        status.textContent = "Wallet address copied successfully.";
+      } catch (error) {
+        status.textContent =
+          "Copy failed. Please select and copy the address manually.";
+      }
+    }
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    selectCoin("BTC");
+  </script>
+
+</body>
+</html>
