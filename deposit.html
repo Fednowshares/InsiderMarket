@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,16 @@
 
   <style>
     :root {
-      --bg: #08111f;
-      --card: #111d30;
-      --border: #26364c;
-      --text: #f4f7fb;
-      --muted: #9aa9bd;
-      --green: #19c887;
-      --green-dark: #0b9e69;
+      --bg: #ffffff;
+      --card: #ffffff;
+      --border: #e5e9f0;
+      --text: #26343a;
+      --muted: #566065;
+      --green: #299e91;
+      --green-dark: #217f75;
+      --navy: #103570;
+      --blue: #528fe0;
+      --purple: #565cf0;
     }
 
     * {
@@ -33,21 +37,25 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 7%;
-      border-bottom: 1px solid var(--border);
-      background: #0b1627;
+      border-bottom: 1px solid #eeeeee;
+      background: #ffffff;
     }
 
     .brand {
       font-size: 21px;
       font-weight: 800;
-      color: var(--green);
+      color: var(--navy);
       text-decoration: none;
     }
 
     .back-link {
-      color: var(--muted);
+      color: var(--blue);
       text-decoration: none;
       font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: var(--navy);
     }
 
     .container {
@@ -63,6 +71,7 @@
     .heading h1 {
       margin: 0 0 10px;
       font-size: 30px;
+      color: var(--navy);
     }
 
     .heading p {
@@ -75,14 +84,16 @@
     .panel {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 10px;
       padding: 24px;
       margin-bottom: 18px;
+      box-shadow: 0 3px 14px rgba(16, 53, 112, 0.05);
     }
 
     .section-title {
       font-size: 16px;
       font-weight: 700;
+      color: var(--navy);
       margin-bottom: 16px;
     }
 
@@ -93,23 +104,25 @@
     }
 
     .coin {
-      background: #0c1728;
-      border: 2px solid var(--border);
-      border-radius: 13px;
+      background: #ffffff;
+      border: 1px solid #dfe5ee;
+      border-radius: 10px;
       color: var(--text);
       padding: 17px 12px;
       text-align: left;
       cursor: pointer;
       transition: border-color .2s, background .2s;
+      font-family: inherit;
     }
 
     .coin:hover {
-      border-color: #54708f;
+      border-color: var(--blue);
     }
 
     .coin.active {
-      border-color: var(--green);
-      background: #102b2b;
+      border: 2px solid var(--purple);
+      background: #f4f4ff;
+      padding: 16px 11px;
     }
 
     .coin-symbol {
@@ -126,6 +139,7 @@
       place-items: center;
       width: 38px;
       height: 38px;
+      flex-shrink: 0;
       border-radius: 50%;
       font-size: 21px;
       font-weight: 800;
@@ -133,12 +147,12 @@
 
     .btc-icon {
       background: #f7931a;
-      color: white;
+      color: #ffffff;
     }
 
     .usdt-icon {
       background: #26a17b;
-      color: white;
+      color: #ffffff;
     }
 
     .coin small {
@@ -151,7 +165,7 @@
     }
 
     .selected-label {
-      color: var(--green);
+      color: var(--purple);
       font-weight: 700;
       font-size: 13px;
       margin-bottom: 8px;
@@ -159,6 +173,7 @@
 
     .payment-content h2 {
       font-size: 21px;
+      color: var(--navy);
       margin: 0 0 10px;
     }
 
@@ -174,15 +189,18 @@
       height: 180px;
       margin: 0 auto 20px;
       padding: 10px;
-      border-radius: 12px;
-      background: white;
+      border: 1px solid #e5e9f0;
+      border-radius: 10px;
+      background: #ffffff;
       display: grid;
       place-items: center;
     }
 
     .qr-wrap img {
+      display: block;
       width: 160px;
       height: 160px;
+      max-width: 100%;
       object-fit: contain;
     }
 
@@ -198,8 +216,8 @@
       align-items: center;
       gap: 10px;
       padding: 12px;
-      background: #091423;
-      border: 1px solid var(--border);
+      background: #f7f9fc;
+      border: 1px solid #dfe5ee;
       border-radius: 10px;
       text-align: left;
     }
@@ -210,27 +228,29 @@
       overflow-wrap: anywhere;
       font-size: 13px;
       line-height: 1.6;
-      color: #e7edf7;
+      color: #26343a;
     }
 
     .copy-btn {
       flex-shrink: 0;
       border: 0;
       background: var(--green);
-      color: #04150e;
+      color: #ffffff;
       font-weight: 700;
+      font-family: inherit;
       padding: 10px 12px;
       border-radius: 8px;
       cursor: pointer;
     }
 
     .copy-btn:hover {
-      background: #43e3a8;
+      background: var(--green-dark);
     }
 
     .network-note {
       text-align: left;
-      background: #17263a;
+      background: #f1f5fb;
+      border: 1px solid #e3ebf7;
       border-radius: 9px;
       padding: 12px;
       margin-top: 15px;
@@ -239,10 +259,14 @@
       color: var(--muted);
     }
 
+    .network-note strong {
+      color: var(--navy);
+    }
+
     .warning {
-      color: #ffd28a;
-      background: #302619;
-      border: 1px solid #5d4525;
+      color: #76551a;
+      background: #fff8e8;
+      border: 1px solid #f0dfb7;
       padding: 13px;
       border-radius: 10px;
       text-align: left;
@@ -255,7 +279,7 @@
       min-height: 20px;
       margin-top: 12px;
       font-size: 13px;
-      color: var(--green);
+      color: var(--green-dark);
     }
 
     .footer {
@@ -268,14 +292,23 @@
     @media (max-width: 420px) {
       .navbar {
         padding: 17px 20px;
+        gap: 12px;
       }
 
       .brand {
         font-size: 18px;
       }
 
+      .back-link {
+        font-size: 12px;
+      }
+
       .container {
         margin-top: 28px;
+      }
+
+      .heading h1 {
+        font-size: 26px;
       }
 
       .panel {
@@ -284,6 +317,20 @@
 
       .coin {
         padding: 13px 9px;
+      }
+
+      .coin.active {
+        padding: 12px 8px;
+      }
+
+      .coin-symbol {
+        gap: 7px;
+        font-size: 14px;
+      }
+
+      .coin-icon {
+        width: 34px;
+        height: 34px;
       }
 
       .address-box {
@@ -405,8 +452,8 @@
       EDIT YOUR PAYMENT ADDRESSES HERE
       =========================================
 
-      Replace both example values with your
-      verified wallet addresses before publishing.
+      Replace the example addresses below with
+      your verified wallet addresses before publishing.
 
       For USDT, specify the exact network you support.
       The address and network must match.
