@@ -19,11 +19,12 @@
         }
 
         .topbar {
-            height: 75px;
+            min-height: 75px;
             padding: 0 22px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
             border-bottom: 1px solid #eeeeee;
             background: #ffffff;
         }
@@ -68,7 +69,7 @@
             position: relative;
             border: 2px solid #16375d;
             border-radius: 12px;
-            padding: 48px 31px 50px;
+            padding: 48px 31px 40px;
             margin-bottom: 28px;
             background: #ffffff;
         }
@@ -113,10 +114,6 @@
             font-size: 16px;
         }
 
-        .details:last-of-type {
-            margin-bottom: 0;
-        }
-
         .detail-value {
             text-align: right;
             color: #4d5055;
@@ -136,7 +133,8 @@
             align-items: center;
             width: 100%;
             min-height: 56px;
-            margin-top: 54px;
+            margin-top: 45px;
+            border: none;
             border-radius: 32px;
             background: #103570;
             color: #ffffff;
@@ -160,6 +158,10 @@
         }
 
         @media (max-width: 380px) {
+            .topbar {
+                padding: 0 12px;
+            }
+
             .plan-card {
                 padding: 45px 20px 35px;
             }
@@ -183,19 +185,16 @@
 
     <header class="topbar">
         <a class="back" href="index.html" aria-label="Go back">←</a>
-
         <a class="home" href="index.html" aria-label="Home">⌂</a>
-
         <span class="language">English ⌄</span>
-
         <span class="profile" aria-label="Profile">♙</span>
     </header>
 
     <main class="plans">
 
+        <!-- PLAN 1: DAILY PLAN -->
         <section class="plan-card">
             <span class="plan-badge">DAILY</span>
-
             <div class="plan-icon" aria-hidden="true">📈</div>
 
             <h1 class="plan-title">Daily Plan</h1>
@@ -231,10 +230,124 @@
             </a>
         </section>
 
+        <!-- PLAN 2: WEEKLY PLAN -->
+        <section class="plan-card">
+            <span class="plan-badge">WEEKLY</span>
+            <div class="plan-icon" aria-hidden="true">📊</div>
+
+            <h2 class="plan-title">Weekly Plan</h2>
+            <div class="plan-rate">Weekly 25%</div>
+
+            <div class="details">
+                <span>Investment</span>
+                <span class="detail-value amount">$100–$5,000</span>
+            </div>
+
+            <div class="details">
+                <span>Capital Back</span>
+                <span class="detail-value">Yes</span>
+            </div>
+
+            <div class="details">
+                <span>Return Type</span>
+                <span class="detail-value">Period</span>
+            </div>
+
+            <div class="details">
+                <span>Number of Period</span>
+                <span class="detail-value">1 Time</span>
+            </div>
+
+            <div class="details">
+                <span>Profit Withdraw</span>
+                <span class="detail-value">Anytime</span>
+            </div>
+
+            <a class="invest-button" href="deposit.html">
+                ✓ &nbsp; INVEST NOW
+            </a>
+        </section>
+
+        <!-- PLAN 3: MONTHLY PLAN -->
+        <section class="plan-card">
+            <span class="plan-badge">MONTHLY</span>
+            <div class="plan-icon" aria-hidden="true">💰</div>
+
+            <h2 class="plan-title">Monthly Plan</h2>
+            <div class="plan-rate">Monthly 30%</div>
+
+            <div class="details">
+                <span>Investment</span>
+                <span class="detail-value amount">$200–$10,000</span>
+            </div>
+
+            <div class="details">
+                <span>Capital Back</span>
+                <span class="detail-value">Yes</span>
+            </div>
+
+            <div class="details">
+                <span>Return Type</span>
+                <span class="detail-value">Period</span>
+            </div>
+
+            <div class="details">
+                <span>Number of Period</span>
+                <span class="detail-value">1 Time</span>
+            </div>
+
+            <div class="details">
+                <span>Profit Withdraw</span>
+                <span class="detail-value">Anytime</span>
+            </div>
+
+            <a class="invest-button" href="deposit.html">
+                ✓ &nbsp; INVEST NOW
+            </a>
+        </section>
+
+        <!-- PLAN 4: PREMIUM PLAN -->
+        <section class="plan-card">
+            <span class="plan-badge">PREMIUM</span>
+            <div class="plan-icon" aria-hidden="true">👑</div>
+
+            <h2 class="plan-title">Premium Plan</h2>
+            <div class="plan-rate">Premium 40%</div>
+
+            <div class="details">
+                <span>Investment</span>
+                <span class="detail-value amount">$500–$20,000</span>
+            </div>
+
+            <div class="details">
+                <span>Capital Back</span>
+                <span class="detail-value">Yes</span>
+            </div>
+
+            <div class="details">
+                <span>Return Type</span>
+                <span class="detail-value">Period</span>
+            </div>
+
+            <div class="details">
+                <span>Number of Period</span>
+                <span class="detail-value">1 Time</span>
+            </div>
+
+            <div class="details">
+                <span>Profit Withdraw</span>
+                <span class="detail-value">Anytime</span>
+            </div>
+
+            <a class="invest-button" href="deposit.html">
+                ✓ &nbsp; INVEST NOW
+            </a>
+        </section>
+
         <p class="disclaimer">
-            Investment returns are not guaranteed. Clearly disclose
-            applicable risks, fees, withdrawal conditions and terms
-            before accepting deposits.
+            Investment involves risk, and returns are not guaranteed.
+            Publish accurate terms, fees, risks, and withdrawal
+            conditions before accepting deposits.
         </p>
 
     </main>
