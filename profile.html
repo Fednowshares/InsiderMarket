@@ -1,0 +1,857 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profile Settings | FedNow Shares</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --navy: #103570;
+  --blue: #528fe0;
+  --text: #34445c;
+  --border: #dedede;
+}
+
+body {
+  margin: 0;
+  background: #f7f7f7;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* TOP NAVIGATION */
+
+.topbar {
+  height: 234px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 8.5% 33px;
+}
+
+.back {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 27px;
+  line-height: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+.nav a {
+  color: #26343a;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav .home {
+  width: 73px;
+  height: 58px;
+  background: var(--blue);
+  color: white;
+  border-radius: 7px;
+}
+
+.nav .home svg {
+  width: 28px;
+  height: 28px;
+}
+
+.nav .active {
+  color: var(--navy);
+}
+
+/* PAGE */
+
+.container {
+  width: calc(100% - 40px);
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 22px 0 50px;
+}
+
+/* DEPOSIT NOTICE */
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 26px;
+  margin-bottom: 48px;
+  background: #fbf6df;
+  border: 1px solid #eee6c7;
+  border-radius: 6px;
+}
+
+.warning {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  background: #ffdf69;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warning svg {
+  width: 31px;
+  height: 31px;
+  fill: none;
+  stroke: #222;
+  stroke-width: 2;
+}
+
+.notice-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notice-title {
+  font-size: 24px;
+  margin-bottom: 13px;
+  color: #555;
+}
+
+.notice-message {
+  font-size: 23px;
+  line-height: 1.7;
+  color: #555;
+}
+
+.notice-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notice-actions button {
+  border: 0;
+  border-radius: 35px;
+  padding: 16px 22px;
+  background: var(--navy);
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.notice-actions .later {
+  background: var(--blue);
+}
+
+/* PROFILE PANEL */
+
+.profile-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-title {
+  padding: 25px 35px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 24px;
+  font-weight: 600;
+  color: #18323d;
+}
+
+.profile-form {
+  padding: 25px 28px 32px;
+}
+
+.field {
+  margin-bottom: 27px;
+}
+
+.field label {
+  display: block;
+  font-size: 21px;
+  margin-bottom: 15px;
+  color: #252525;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 58px;
+  padding: 15px 18px;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  background: white;
+  font-family: inherit;
+  font-size: 19px;
+  color: #303030;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--blue);
+}
+
+.field input[readonly] {
+  background: #f4f5f7;
+  color: #737373;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* AVATAR UPLOAD */
+
+.avatar-label {
+  font-size: 21px;
+  margin-bottom: 26px;
+  color: #555;
+}
+
+.upload-box {
+  position: relative;
+  border: 2px dashed #d6d6d6;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 45px;
+  background: white;
+  text-align: center;
+}
+
+.upload-trigger {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  padding: 15px;
+  background: white;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 100%;
+  max-width: 280px;
+  height: 220px;
+  object-fit: contain;
+  background: #fff;
+  display: block;
+}
+
+.upload-hint {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.filename {
+  display: block;
+  width: 100%;
+  padding: 13px 12px;
+  background: #ed91b2;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+#photoInput {
+  display: none;
+}
+
+/* BUTTONS */
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.btn {
+  min-height: 48px;
+  padding: 13px 25px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save {
+  background: var(--blue);
+  color: white;
+}
+
+.reset {
+  background: #e8edf3;
+  color: var(--text);
+}
+
+.status {
+  display: none;
+  padding: 13px;
+  margin-top: 18px;
+  border-radius: 5px;
+  background: #e9f8ee;
+  color: #176b36;
+  font-size: 14px;
+}
+
+.status.show {
+  display: block;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  .topbar {
+    height: 234px;
+    padding: 0 8.5% 33px;
+  }
+
+  .nav {
+    gap: 28px;
+  }
+
+  .nav .home {
+    width: 73px;
+    height: 58px;
+  }
+
+  .container {
+    width: calc(100% - 40px);
+    padding-top: 0;
+  }
+
+  .notice {
+    gap: 12px;
+    padding: 18px 15px;
+    margin-bottom: 48px;
+  }
+
+  .warning {
+    width: 60px;
+    height: 60px;
+  }
+
+  .notice-title {
+    font-size: 19px;
+  }
+
+  .notice-message {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .notice-actions button {
+    padding: 15px 13px;
+    font-size: 12px;
+  }
+
+  .card-title {
+    padding: 25px 35px;
+    font-size: 24px;
+  }
+
+  .profile-form {
+    padding: 25px 22px 30px;
+  }
+
+  .field label,
+  .avatar-label {
+    font-size: 19px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 17px;
+    min-height: 58px;
+  }
+
+  .upload-trigger {
+    min-height: 220px;
+  }
+
+  .avatar {
+    height: 220px;
+  }
+
+  .filename {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .nav {
+    gap: 18px;
+  }
+
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .notice {
+    padding: 13px 10px;
+    gap: 8px;
+  }
+
+  .warning {
+    width: 43px;
+    height: 43px;
+  }
+
+  .warning svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .notice-title {
+    font-size: 16px;
+  }
+
+  .notice-message {
+    font-size: 14px;
+  }
+
+  .notice-actions button {
+    padding: 12px 9px;
+    font-size: 10px;
+  }
+
+  .profile-form {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP NAVIGATION -->
+
+<header class="topbar">
+
+  <a class="back" href="index.html" aria-label="Back">
+    &#8594;
+  </a>
+
+  <nav class="nav">
+
+    <a class="home" href="index.html" aria-label="Dashboard">
+      <svg viewBox="0 0 24 24">
+        <path d="m3 10 9-7 9 7"/>
+        <path d="M5 9v12h14V9"/>
+        <path d="M9 21v-7h6v7"/>
+      </svg>
+    </a>
+
+    <a href="index.html" aria-label="Menu">
+      <svg viewBox="0 0 24 24">
+        <path d="m5 9 7 7 7-7"/>
+      </svg>
+    </a>
+
+    <a class="active" href="profile.html" aria-label="Profile">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="7" r="4"/>
+        <path d="M4 21c0-5 3-8 8-8s8 3 8 8"/>
+      </svg>
+    </a>
+
+  </nav>
+</header>
+
+<main class="container">
+
+  <!-- MINIMUM DEPOSIT NOTICE -->
+
+  <section class="notice" id="depositNotice">
+
+    <div class="warning">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 3 22 21H2L12 3Z"/>
+        <path d="M12 9v5M12 17h.01"/>
+      </svg>
+    </div>
+
+    <div class="notice-content">
+      <div class="notice-title">
+        Dear <span id="noticeName">Shehzad</span>
+      </div>
+
+      <div class="notice-message">
+        minimum deposit of <strong>$50</strong> is required to complete initial deposit
+      </div>
+    </div>
+
+    <div class="notice-actions">
+      <button type="button" onclick="submitDeposit()">
+        &#9432; SUBMIT
+      </button>
+
+      <button type="button" class="later" onclick="hideNotice()">
+        &#10005; LATER
+      </button>
+    </div>
+
+  </section>
+
+  <!-- PROFILE SETTINGS -->
+
+  <section class="profile-card">
+
+    <div class="card-title">Profile Settings</div>
+
+    <form class="profile-form" id="profileForm">
+
+      <!-- PROFILE PHOTO -->
+
+      <div class="avatar-label">Avatar:</div>
+
+      <div class="upload-box">
+
+        <button type="button" class="upload-trigger"
+                onclick="document.getElementById('photoInput').click()">
+
+          <img
+            src=""
+            alt="Profile photo preview"
+            class="avatar"
+            id="avatarPreview"
+            style="display:none"
+          >
+
+          <div id="avatarPlaceholder">
+            <svg width="55" height="55" viewBox="0 0 24 24"
+                 fill="none" stroke="#9ca3af" stroke-width="1.5">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 21c0-5 3-8 8-8s8 3 8 8"/>
+            </svg>
+
+            <div>Select a profile photo</div>
+
+            <div class="upload-hint">
+              JPG, PNG or WEBP
+            </div>
+          </div>
+
+        </button>
+
+        <input
+          type="file"
+          id="photoInput"
+          accept="image/jpeg,image/png,image/webp"
+        >
+
+        <span class="filename" id="fileName">
+          Choose profile photo
+        </span>
+
+      </div>
+
+      <!-- FIRST NAME -->
+
+      <div class="field">
+        <label for="firstName">First Name</label>
+
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          value="Shehzad"
+          autocomplete="given-name"
+          required
+        >
+      </div>
+
+      <!-- LAST NAME -->
+
+      <div class="field">
+        <label for="lastName">Last Name</label>
+
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          value="Hussain"
+          autocomplete="family-name"
+          required
+        >
+      </div>
+
+      <!-- USERNAME -->
+
+      <div class="field">
+        <label for="username">Username</label>
+
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="Shehzad7"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <!-- EMAIL -->
+
+      <div class="field">
+        <label for="email">Email Address</label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email address"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <!-- PHONE -->
+
+      <div class="field">
+        <label for="phone">Phone Number</label>
+
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Enter your phone number"
+          autocomplete="tel"
+        >
+      </div>
+
+      <!-- COUNTRY -->
+
+      <div class="field">
+        <label for="country">Country</label>
+
+        <input
+          type="text"
+          id="country"
+          name="country"
+          placeholder="Enter your country"
+          autocomplete="country-name"
+        >
+      </div>
+
+      <!-- ADDRESS -->
+
+      <div class="field">
+        <label for="address">Address</label>
+
+        <textarea
+          id="address"
+          name="address"
+          placeholder="Enter your address"
+          autocomplete="street-address"
+        ></textarea>
+      </div>
+
+      <!-- SAVE BUTTONS -->
+
+      <div class="form-actions">
+
+        <button type="submit" class="btn save">
+          Save Changes
+        </button>
+
+        <button type="button" class="btn reset" onclick="resetForm()">
+          Reset
+        </button>
+
+      </div>
+
+      <div class="status" id="status" role="status"></div>
+
+    </form>
+
+  </section>
+
+</main>
+
+<script>
+// Load saved profile details on this browser.
+
+const fields = [
+  "firstName",
+  "lastName",
+  "username",
+  "email",
+  "phone",
+  "country",
+  "address"
+];
+
+let selectedPhoto = "";
+
+function loadProfile() {
+  fields.forEach(function(id) {
+    const saved = localStorage.getItem("fednow_profile_" + id);
+
+    if (saved !== null) {
+      document.getElementById(id).value = saved;
+    }
+  });
+
+  const savedPhoto = localStorage.getItem("fednow_profile_photo");
+
+  if (savedPhoto) {
+    showPhoto(savedPhoto, "Saved profile photo");
+  }
+
+  updateNoticeName();
+}
+
+function updateNoticeName() {
+  const firstName = document.getElementById("firstName").value.trim();
+
+  document.getElementById("noticeName").textContent =
+    firstName || "User";
+}
+
+function showPhoto(source, filename) {
+  const preview = document.getElementById("avatarPreview");
+
+  preview.src = source;
+  preview.style.display = "block";
+
+  document.getElementById("avatarPlaceholder").style.display = "none";
+  document.getElementById("fileName").textContent = filename;
+  selectedPhoto = source;
+}
+
+// Upload and preview a new photo.
+
+document.getElementById("photoInput").addEventListener("change", function() {
+  const file = this.files[0];
+
+  if (!file) return;
+
+  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    alert("Please select a JPG, PNG or WEBP image.");
+    this.value = "";
+    return;
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    alert("Please choose a photo smaller than 2 MB.");
+    this.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    showPhoto(event.target.result, file.name);
+  };
+
+  reader.readAsDataURL(file);
+});
+
+// Save the profile in this browser.
+
+document.getElementById("profileForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  try {
+    fields.forEach(function(id) {
+      localStorage.setItem(
+        "fednow_profile_" + id,
+        document.getElementById(id).value.trim()
+      );
+    });
+
+    if (selectedPhoto) {
+      localStorage.setItem("fednow_profile_photo", selectedPhoto);
+    }
+
+    updateNoticeName();
+
+    const status = document.getElementById("status");
+    status.textContent = "Profile saved successfully on this browser.";
+    status.classList.add("show");
+
+  } catch (error) {
+    alert("Unable to save. Your browser storage may be full.");
+  }
+});
+
+// Reset the form to its original example values.
+
+function resetForm() {
+  if (!confirm("Reset the profile form?")) return;
+
+  document.getElementById("profileForm").reset();
+
+  fields.forEach(function(id) {
+    localStorage.removeItem("fednow_profile_" + id);
+  });
+
+  localStorage.removeItem("fednow_profile_photo");
+
+  selectedPhoto = "";
+
+  document.getElementById("avatarPreview").style.display = "none";
+  document.getElementById("avatarPreview").src = "";
+  document.getElementById("avatarPlaceholder").style.display = "block";
+  document.getElementById("fileName").textContent = "Choose profile photo";
+  document.getElementById("status").classList.remove("show");
+
+  updateNoticeName();
+}
+
+function hideNotice() {
+  document.getElementById("depositNotice").style.display = "none";
+}
+
+function submitDeposit() {
+  window.location.href = "index.html";
+}
+
+loadProfile();
+</script>
+
+</body>
+</html>
+```
