@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Add Money | Fednow Shares</title>
 
 <style>
@@ -84,205 +86,238 @@ body {
     font-size: 13px;
 }
 
-/* PAGE */
+/* MAIN PAGE */
 
 .page {
     width: 100%;
     max-width: 760px;
     margin: 0 auto;
-    padding: 18px 26px 35px;
+    padding: 16px 22px 35px;
 }
 
-/* NOTICE CARD */
+.section {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 9px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.025);
+}
 
-.notice {
-    position: relative;
+/* FIRST BOX: HEADING */
+
+.heading-box {
     background: #5861ed;
     color: #fff;
-    border-radius: 10px;
-    padding: 25px 22px 28px;
-    overflow: hidden;
+    border: none;
+    padding: 22px 20px;
 }
 
-.notice::after {
-    content: "";
-    position: absolute;
-    width: 105px;
-    height: 105px;
-    top: -53px;
-    right: -53px;
-    background: #fff;
-    border-radius: 50%;
-}
-
-.notice-title {
-    position: relative;
-    z-index: 1;
+.heading-box h1 {
+    margin: 0 0 8px;
     font-size: 24px;
-    font-weight: 700;
-    margin: 0 0 22px;
 }
 
-.notice-text {
-    position: relative;
-    z-index: 1;
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0 0 20px;
-    color: #f5f5ff;
-}
-
-/* DEPOSIT AMOUNT */
-
-.amount-box {
-    position: relative;
-    z-index: 1;
-    background: #fff;
-    border-radius: 8px;
-    padding: 17px 18px;
-    margin: 18px 0;
-    color: #333;
-}
-
-.amount-title {
-    font-size: 14px;
-    color: #707070;
-    margin-bottom: 7px;
-}
-
-.amount {
-    font-size: 27px;
-    font-weight: 700;
-    color: #5861ed;
-}
-
-/* REQUIREMENT */
-
-.requirement {
-    position: relative;
-    z-index: 1;
-    margin-top: 20px;
-}
-
-.requirement-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.requirement-list {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.requirement-list li {
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 7px;
-    color: #f5f5ff;
-}
-
-/* NEXT STEP */
-
-.next-step {
-    position: relative;
-    z-index: 1;
-    background: rgba(255,255,255,0.12);
-    border-radius: 7px;
-    padding: 15px;
-    margin-top: 22px;
-}
-
-.next-step strong {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 6px;
-}
-
-.next-step p {
+.heading-box p {
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
+    color: #f0f1ff;
 }
 
-/* BUTTON */
+/* SECTION HEADINGS */
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    color: #333;
+}
+
+/* SECOND BOX: AMOUNT */
+
+.amount-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.amount-input-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #d8dce5;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.currency {
+    padding: 14px 15px;
+    background: #f1f3f8;
+    color: #5861ed;
+    font-size: 20px;
+    font-weight: 700;
+    border-right: 1px solid #d8dce5;
+}
+
+.amount-input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 12px;
+    border: 0;
+    outline: none;
+    font-family: inherit;
+    font-size: 21px;
+    color: #333;
+    background: #fff;
+}
+
+.amount-input:focus {
+    box-shadow: inset 0 0 0 1px #5861ed;
+}
+
+.helper-text {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.5;
+    margin: 9px 0 0;
+}
+
+/* THIRD BOX: INSTRUCTIONS */
+
+.instructions-box {
+    padding-bottom: 14px;
+}
+
+.instruction-list {
+    padding-left: 23px;
+    margin: 0;
+}
+
+.instruction-list li {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 9px;
+    color: #555;
+    padding-left: 3px;
+}
+
+/* FOURTH BOX: YELLOW NOTICE */
+
+.notice-box {
+    background: #fff8db;
+    border: 1px solid #f2d36b;
+    border-left: 5px solid #e9b923;
+    box-shadow: none;
+}
+
+.notice-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #775500;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.notice-symbol {
+    width: 23px;
+    height: 23px;
+    border: 2px solid #c18c00;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.notice-box p {
+    margin: 0;
+    color: #725e26;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+/* CONTINUE BUTTON */
 
 .continue-button {
-    position: relative;
-    z-index: 1;
     width: 100%;
-    height: 47px;
-    margin-top: 23px;
-    border: 0;
-    border-radius: 6px;
-    background: #fff;
-    color: #5861ed;
+    min-height: 48px;
+    background: #5861ed;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 3px;
 }
 
 .continue-button:hover {
-    background: #f1f1f1;
+    background: #474fd6;
+}
+
+.continue-button:active {
+    transform: scale(0.99);
+}
+
+/* FORM FEEDBACK */
+
+.error-message {
+    display: none;
+    margin-top: 10px;
+    color: #b42318;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.error-message.show {
+    display: block;
 }
 
 /* MOBILE */
 
 @media (max-width: 500px) {
-
     .topbar {
         height: 78px;
-        padding: 0 9% 13px;
+        padding: 0 7% 13px;
     }
 
     .nav-right {
-        gap: 18px;
+        gap: 16px;
     }
 
     .page {
-        padding: 12px 20px 30px;
+        padding: 12px 15px 28px;
     }
 
-    .notice {
-        padding: 22px 18px 24px;
+    .section {
+        padding: 17px;
+        margin-bottom: 12px;
     }
 
-    .notice-title {
+    .heading-box {
+        padding: 20px 17px;
+    }
+
+    .heading-box h1 {
         font-size: 22px;
-        margin-bottom: 18px;
     }
 
-    .notice-text {
-        font-size: 15px;
-        line-height: 1.55;
-    }
-
-    .amount {
-        font-size: 25px;
-    }
-
-    .requirement-title {
+    .section-title {
         font-size: 17px;
     }
 
-    .requirement-list li {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 360px) {
-
-    .page {
-        padding-left: 15px;
-        padding-right: 15px;
+    .amount-input {
+        font-size: 20px;
     }
 
-    .nav-right {
-        gap: 13px;
-    }
-
-    .notice {
-        padding: 20px 16px 22px;
+    .instruction-list li {
+        font-size: 13px;
     }
 }
 </style>
@@ -314,7 +349,6 @@ body {
 
         <label class="language">
             <span>English</span>
-
             <select aria-label="Language">
                 <option value="en" selected>⌄</option>
                 <option value="fr">FR</option>
@@ -338,98 +372,152 @@ body {
 </header>
 
 
-<!-- ADD MONEY PAGE -->
-
 <main class="page">
 
-    <section class="notice">
+    <!-- BOX 1: PAGE HEADING -->
 
-        <h1 class="notice-title">
-            Add Money
-        </h1>
+    <section class="section heading-box">
 
-        <p class="notice-text">
-            You are about to add money to your account.
-            Please review the deposit amount and the requirements
-            below before continuing.
+        <h1>Add Money</h1>
+
+        <p>
+            Enter the amount you wish to deposit and review the
+            instructions and requirements before continuing.
         </p>
-
-
-        <!-- EDIT YOUR DEPOSIT AMOUNT HERE -->
-
-        <div class="amount-box">
-
-            <div class="amount-title">
-                Deposit Amount
-            </div>
-
-            <div class="amount">
-                $100.00
-            </div>
-
-        </div>
-
-
-        <!-- REQUIREMENTS -->
-
-        <div class="requirement">
-
-            <div class="requirement-title">
-                What is required next
-            </div>
-
-            <ul class="requirement-list">
-
-                <li>
-                    Confirm the amount you want to deposit.
-                </li>
-
-                <li>
-                    Follow the payment instructions provided on the next page.
-                </li>
-
-                <li>
-                    Complete the payment using the required payment method.
-                </li>
-
-                <li>
-                    Submit your payment confirmation after completing the deposit.
-                </li>
-
-            </ul>
-
-        </div>
-
-
-        <!-- NEXT STEP -->
-
-        <div class="next-step">
-
-            <strong>
-                Important Notice
-            </strong>
-
-            <p>
-                Make sure the amount and payment details are correct
-                before proceeding with your deposit.
-            </p>
-
-        </div>
-
-
-        <!-- NEXT BUTTON -->
-
-        <button class="continue-button"
-                type="button"
-                onclick="window.location.href='deposit.html'">
-
-            Continue
-
-        </button>
 
     </section>
 
+
+    <!-- BOX 2: EDITABLE DEPOSIT AMOUNT -->
+
+    <section class="section">
+
+        <h2 class="section-title">Deposit Amount</h2>
+
+        <label class="amount-label" for="depositAmount">
+            Enter your deposit amount
+        </label>
+
+        <div class="amount-input-wrap">
+
+            <span class="currency">$</span>
+
+            <input
+                type="number"
+                id="depositAmount"
+                class="amount-input"
+                name="depositAmount"
+                placeholder="Enter amount"
+                min="1"
+                step="0.01"
+                inputmode="decimal"
+                autocomplete="off"
+                aria-describedby="amountHelp"
+                required
+            >
+
+        </div>
+
+        <p class="helper-text" id="amountHelp">
+            Enter the amount you intend to deposit in USD.
+        </p>
+
+    </section>
+
+
+    <!-- BOX 3: INSTRUCTIONS -->
+
+    <section class="section instructions-box">
+
+        <h2 class="section-title">
+            What Is Required Next?
+        </h2>
+
+        <ol class="instruction-list">
+
+            <li>
+                Enter the amount you want to deposit in the field above.
+            </li>
+
+            <li>
+                Review the payment instructions on the next page.
+            </li>
+
+            <li>
+                Follow the stated payment method and confirm the details
+                before sending funds.
+            </li>
+
+            <li>
+                Follow the payment confirmation process after completing
+                your transfer.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <!-- BOX 4: YELLOW NOTICE -->
+
+    <section class="section notice-box">
+
+        <h2 class="notice-title">
+            <span class="notice-symbol">!</span>
+            Important Notice
+        </h2>
+
+        <p>
+            Always check the payment amount and destination details
+            before sending money. Only proceed when the payment
+            instructions match the amount you intend to deposit.
+        </p>
+
+    </section>
+
+
+    <!-- CONTINUE -->
+
+    <button
+        class="continue-button"
+        type="button"
+        onclick="continueDeposit()">
+
+        Continue
+
+    </button>
+
+    <p id="errorMessage" class="error-message" role="alert"></p>
+
 </main>
+
+
+<script>
+function continueDeposit() {
+    const amountField = document.getElementById("depositAmount");
+    const errorMessage = document.getElementById("errorMessage");
+    const amount = Number(amountField.value);
+
+    errorMessage.classList.remove("show");
+    errorMessage.textContent = "";
+
+    if (
+        amountField.value.trim() === "" ||
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
+        errorMessage.textContent =
+            "Please enter a valid deposit amount greater than zero.";
+        errorMessage.classList.add("show");
+        amountField.focus();
+        return;
+    }
+
+    // Save the chosen amount in the URL for the next page.
+    window.location.href =
+        "deposit.html?amount=" + encodeURIComponent(amount.toFixed(2));
+}
+</script>
 
 </body>
 </html>
