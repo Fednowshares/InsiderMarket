@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Schema | Fednow Shares</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #103570;
+    --blue: #528fe0;
+    --purple: #565cf0;
+    --teal: #299e91;
+    --text: #566065;
+    --border: #e9edf2;
+    --light: #f7f9fc;
+}
+
+body {
+    margin: 0;
+    background: #fff;
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* TOP NAVIGATION */
+
+.topbar {
+    height: 105px;
+    padding: 0 8.5% 18px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav button {
+    border: 0;
+    background: transparent;
+    color: #26343a;
+}
+
+.back {
+    color: var(--blue) !important;
+    font-size: 23px;
+    padding: 0;
+}
+
+.home {
+    width: 45px;
+    height: 36px;
+    padding: 10px;
+    border-radius: 6px;
+    background: var(--blue) !important;
+    color: white !important;
+}
+
+.nav svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.nav .small {
+    width: 25px;
+    height: 25px;
+    padding: 4px;
+}
+
+/* PAGE */
+
+.page {
+    width: calc(100% - 32px);
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.page-heading {
+    padding: 25px 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(22px, 5vw, 29px);
+    color: #4c585f;
+    font-weight: 750;
+}
+
+.badge {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* INTRO */
+
+.intro {
+    background: var(--navy);
+    color: white;
+    padding: 17px;
+    border-radius: 5px;
+    margin-bottom: 17px;
+}
+
+.intro h2 {
+    margin: 0 0 7px;
+    font-size: 19px;
+}
+
+.intro p {
+    margin: 0;
+    color: #d8e4f7;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* SEARCH */
+
+.search-wrap {
+    margin-bottom: 14px;
+}
+
+.search {
+    width: 100%;
+    height: 43px;
+    border: 1px solid #dfe5eb;
+    border-radius: 5px;
+    padding: 0 13px;
+    outline: none;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.search:focus {
+    border-color: var(--blue);
+}
+
+/* STOCK LIST */
+
+.stock-list {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.list-heading {
+    min-height: 43px;
+    padding: 0 14px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 85px;
+    align-items: center;
+    background: var(--light);
+    border-bottom: 1px solid var(--border);
+    color: #7b858b;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.stock {
+    min-height: 78px;
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 85px;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.stock:last-child {
+    border-bottom: none;
+}
+
+.stock-info {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.stock-logo {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid #e9edf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f9fc;
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.stock-name {
+    margin: 0 0 5px;
+    color: #39474f;
+    font-size: 13px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.stock-symbol {
+    margin: 0;
+    color: #909ba2;
+    font-size: 10px;
+}
+
+.price-button {
+    width: 85px;
+    min-height: 34px;
+    border: none;
+    border-radius: 4px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .3px;
+}
+
+.price-button:hover {
+    background: #3677cd;
+}
+
+.empty {
+    display: none;
+    padding: 25px 10px;
+    text-align: center;
+    color: #89939a;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 18px 10px 28px;
+    color: #939da3;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* CHAT BUTTON */
+
+.chat {
+    position: fixed;
+    right: 19px;
+    bottom: 30px;
+    width: 57px;
+    height: 57px;
+    border: 0;
+    border-radius: 50%;
+    background: #1760ed;
+    box-shadow: 0 4px 15px #0002;
+    display: grid;
+    place-items: center;
+}
+
+.chat-icon {
+    width: 27px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+}
+
+.chat-icon:after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    bottom: -3px;
+    width: 8px;
+    height: 8px;
+    background: white;
+    transform: rotate(30deg);
+}
+
+/* MOBILE */
+
+@media (max-width: 420px) {
+    .topbar {
+        height: 95px;
+        padding: 0 17px 16px;
+    }
+
+    .nav {
+        gap: 15px;
+    }
+
+    .page {
+        width: calc(100% - 28px);
+    }
+
+    .page-heading {
+        padding-top: 21px;
+    }
+
+    .intro {
+        padding: 14px;
+    }
+
+    .stock {
+        min-height: 72px;
+        padding: 10px;
+        gap: 7px;
+    }
+
+    .stock-info {
+        gap: 8px;
+    }
+
+    .stock-logo {
+        width: 34px;
+        height: 34px;
+        font-size: 10px;
+    }
+
+    .stock-name {
+        font-size: 11px;
+    }
+
+    .stock-symbol {
+        font-size: 9px;
+    }
+
+    .list-heading {
+        padding: 0 10px;
+    }
+
+    .price-button {
+        width: 75px;
+        font-size: 9px;
+    }
+
+    .stock,
+    .list-heading {
+        grid-template-columns: minmax(0, 1fr) 75px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <button class="back" aria-label="Back" onclick="goBack()">&#8592;</button>
+
+    <nav class="nav">
+        <button class="home" aria-label="Home" onclick="goHome()">
+            <svg viewBox="0 0 24 24">
+                <path d="m3 10 9-7 9 7M5.5 9v12h13V9M9 21v-7h6v7"/>
+            </svg>
+        </button>
+
+        <button class="small" aria-label="Menu" onclick="showMessage('Menu')">
+            <svg viewBox="0 0 24 24">
+                <path d="m5 9 7 7 7-7"/>
+            </svg>
+        </button>
+
+        <button class="small" aria-label="Profile" onclick="showMessage('Profile')">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="7.5" r="4"/>
+                <path d="M4 21c.7-4.2 3.5-6.5 8-6.5s7.3 2.3 8 6.5"/>
+            </svg>
+        </button>
+    </nav>
+</header>
+
+<main class="page">
+
+    <div class="page-heading">
+        <h1>All Schema</h1>
+        <span class="badge">STOCKS</span>
+    </div>
+
+    <section class="intro">
+        <h2>Available Stocks</h2>
+        <p>
+            Explore the companies available on this page.
+            Select PRICE to search Google for the latest market price
+            of any listed stock.
+        </p>
+    </section>
+
+    <div class="search-wrap">
+        <input
+            class="search"
+            id="stockSearch"
+            type="search"
+            placeholder="Search stocks or company names..."
+            aria-label="Search stocks">
+    </div>
+
+    <section class="stock-list" id="stockList">
+
+        <div class="list-heading">
+            <span>Stock / Company</span>
+            <span>Market Price</span>
+        </div>
+
+        <!-- STOCK 1 -->
+        <div class="stock" data-search="apple apple inc aapl">
+            <div class="stock-info">
+                <div class="stock-logo">A</div>
+                <div>
+                    <p class="stock-name">Apple Inc.</p>
+                    <p class="stock-symbol">NASDAQ: AAPL</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Apple Inc. AAPL stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 2 -->
+        <div class="stock" data-search="microsoft msft">
+            <div class="stock-info">
+                <div class="stock-logo">M</div>
+                <div>
+                    <p class="stock-name">Microsoft Corporation</p>
+                    <p class="stock-symbol">NASDAQ: MSFT</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Microsoft Corporation MSFT stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 3 -->
+        <div class="stock" data-search="nvidia nvda">
+            <div class="stock-info">
+                <div class="stock-logo">N</div>
+                <div>
+                    <p class="stock-name">NVIDIA Corporation</p>
+                    <p class="stock-symbol">NASDAQ: NVDA</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('NVIDIA Corporation NVDA stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 4 -->
+        <div class="stock" data-search="amazon amzn">
+            <div class="stock-info">
+                <div class="stock-logo">a</div>
+                <div>
+                    <p class="stock-name">Amazon.com Inc.</p>
+                    <p class="stock-symbol">NASDAQ: AMZN</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Amazon AMZN stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 5 -->
+        <div class="stock" data-search="alphabet google googl goog">
+            <div class="stock-info">
+                <div class="stock-logo">G</div>
+                <div>
+                    <p class="stock-name">Alphabet Inc. (Google)</p>
+                    <p class="stock-symbol">NASDAQ: GOOGL</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Alphabet Google GOOGL stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 6 -->
+        <div class="stock" data-search="tesla tsla">
+            <div class="stock-info">
+                <div class="stock-logo">T</div>
+                <div>
+                    <p class="stock-name">Tesla Inc.</p>
+                    <p class="stock-symbol">NASDAQ: TSLA</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Tesla TSLA stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 7 -->
+        <div class="stock" data-search="meta facebook meta platforms">
+            <div class="stock-info">
+                <div class="stock-logo">f</div>
+                <div>
+                    <p class="stock-name">Meta Platforms Inc.</p>
+                    <p class="stock-symbol">NASDAQ: META</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Meta Platforms META stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 8 -->
+        <div class="stock" data-search="berkshire hathaway brk b brk.b">
+            <div class="stock-info">
+                <div class="stock-logo">BH</div>
+                <div>
+                    <p class="stock-name">Berkshire Hathaway</p>
+                    <p class="stock-symbol">NYSE: BRK.B</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Berkshire Hathaway BRK.B stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 9 -->
+        <div class="stock" data-search="jpmorgan chase jpm">
+            <div class="stock-info">
+                <div class="stock-logo">JPM</div>
+                <div>
+                    <p class="stock-name">JPMorgan Chase &amp; Co.</p>
+                    <p class="stock-symbol">NYSE: JPM</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('JPMorgan Chase JPM stock')">PRICE</button>
+        </div>
+
+        <!-- STOCK 10 -->
+        <div class="stock" data-search="coca cola coca-cola ko">
+            <div class="stock-info">
+                <div class="stock-logo">C</div>
+                <div>
+                    <p class="stock-name">The Coca-Cola Company</p>
+                    <p class="stock-symbol">NYSE: KO</p>
+                </div>
+            </div>
+            <button class="price-button"
+                onclick="searchPrice('Coca-Cola KO stock')">PRICE</button>
+        </div>
+
+        <div class="empty" id="emptyMessage">
+            No matching stocks found.
+        </div>
+
+    </section>
+
+    <div class="footer">
+        Stock prices are not displayed on this page.<br>
+        Click PRICE to search for market information on Google.
+    </div>
+
+</main>
+
+<button class="chat" aria-label="Chat support"
+    onclick="showMessage('Chat support')">
+    <span class="chat-icon"></span>
+</button>
+
+<script>
+/* Search for a company's stock price on Google */
+function searchPrice(stock) {
+    const url = "https://www.google.com/search?q="
+        + encodeURIComponent(stock + " current stock price");
+
+    window.open(url, "_blank", "noopener,noreferrer");
+}
+
+/* Filter stocks */
+const stockSearch = document.getElementById("stockSearch");
+const stockRows = document.querySelectorAll(".stock");
+const emptyMessage = document.getElementById("emptyMessage");
+
+stockSearch.addEventListener("input", function () {
+    const query = this.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    stockRows.forEach(function (row) {
+        const text = (
+            row.innerText + " " + row.dataset.search
+        ).toLowerCase();
+
+        const match = text.includes(query);
+        row.style.display = match ? "grid" : "none";
+
+        if (match) visibleCount++;
+    });
+
+    emptyMessage.style.display =
+        visibleCount === 0 ? "block" : "none";
+});
+
+/* Navigation */
+function goBack() {
+    if (document.referrer) {
+        history.back();
+    } else {
+        goHome();
+    }
+}
+
+function goHome() {
+    window.location.href = "index.html";
+}
+
+function showMessage(message) {
+    alert(message);
+}
+</script>
+
+</body>
+</html>
