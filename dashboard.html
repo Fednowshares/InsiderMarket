@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Account Dashboard</title>
+<title>Dashboard | Fednow Shares</title>
 
 <style>
 * {
@@ -11,361 +12,303 @@
 }
 
 :root {
-    --navy: #103570;
-    --blue: #528fe0;
-    --purple: #565cf0;
-    --teal: #299e91;
-    --text: #566065;
-    --pale: #c4d2ec;
+    --primary: #5861ed;
+    --page-bg: #f7f7f7;
+    --text: #ffffff;
 }
 
-html, body {
+body {
     margin: 0;
-    padding: 0;
-    background: #fff;
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--text);
-}
-
-button {
-    font-family: inherit;
-    cursor: pointer;
+    background: var(--page-bg);
+    color: #333;
 }
 
 /* TOP NAVIGATION */
 
 .topbar {
-    height: 136px;
-    border-bottom: 1px solid #eee;
+    height: 150px;
+    background: #fff;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 0 8.5% 20px;
+    padding: 0 9% 19px;
+    border-bottom: 1px solid #eee;
 }
 
-.back {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--blue);
-}
-
-.nav {
+.nav-left {
     display: flex;
     align-items: center;
-    gap: 28px;
 }
 
-.nav button {
-    border: 0;
-    background: none;
-    color: #26343a;
+.back-link {
+    text-decoration: none;
+    color: #528fe0;
+    font-size: 25px;
+    line-height: 1;
 }
 
-.nav .home {
-    width: 61px;
-    height: 50px;
-    border-radius: 7px;
-    background: var(--blue);
-    color: #fff;
-    padding: 17px;
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-.nav .down,
-.nav .user {
-    width: 28px;
-    height: 28px;
-    padding: 5px;
+.nav-link {
+    text-decoration: none;
+    color: #242424;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-svg {
-    width: 100%;
-    height: 100%;
+.home-link {
+    width: 48px;
+    height: 40px;
+    background: #528fe0;
+    color: white;
+    border-radius: 6px;
+}
+
+.nav-link svg {
+    width: 18px;
+    height: 18px;
     fill: none;
     stroke: currentColor;
-    stroke-width: 2;
+    stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-/* MAIN CONTENT */
-
-.page {
-    width: calc(100% - 42px);
-    max-width: 780px;
-    margin: 0 auto;
-}
-
-/* BALANCE CARD */
-
-.balance {
-    background: var(--navy);
-    color: #fff;
-    border-radius: 5px;
-    padding: 13px 16px 14px;
-}
-
-.heading {
+.language {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 16px;
-}
-
-h1 {
-    font-size: clamp(20px, 5vw, 28px);
-    line-height: 1.15;
-    margin: 7px 0 0;
-    font-weight: 750;
-    letter-spacing: -0.3px;
-}
-
-.tag {
-    background: #fff;
-    color: #101c22;
-    border-radius: 5px;
-    padding: 7px 11px;
-    font-size: 10px;
-    line-height: 1.1;
-    font-weight: 800;
-    text-align: center;
+    font-size: 15px;
     white-space: nowrap;
 }
 
-.wallet {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 13px;
-}
-
-.wallet:last-child {
-    margin-bottom: 0;
-}
-
-.icon {
-    width: 23px;
-    height: 23px;
-    flex-shrink: 0;
-    color: #d5e0f4;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.name {
-    flex: 1;
-    color: var(--pale);
-    font-size: clamp(17px, 4.1vw, 29px);
-    font-weight: 700;
-}
-
-.amount {
-    font-size: clamp(17px, 4.1vw, 29px);
-    font-weight: 750;
-    white-space: nowrap;
-}
-
-/* DEPOSIT AND INVEST BUTTONS */
-
-.actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 10px 0 20px;
-}
-
-.action {
-    height: 47px;
+.language select {
+    width: 14px;
     border: 0;
-    border-radius: 5px;
-    color: #fff;
-    font-size: clamp(16px, 4vw, 22px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
 }
 
-.action svg {
-    width: 19px;
-    height: 19px;
-}
+/* DASHBOARD */
 
-.deposit {
-    background: var(--purple);
-}
-
-.invest {
-    background: var(--teal);
-}
-
-/* SIDEBAR MENU */
-
-.menu {
-    border-top: 1px solid #eee;
-    padding: 24px 0 25px;
-}
-
-.item {
+.dashboard {
     width: 100%;
-    min-height: 54px;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 6px 26px 35px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+/* SUMMARY CARDS */
+
+.stat-card {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 0 31px;
-    border: 0;
-    background: #fff;
-    text-align: left;
+    gap: 17px;
+    min-height: 110px;
+    padding: 18px 17px;
+    overflow: hidden;
+    background: var(--primary);
+    border-radius: 10px;
     color: var(--text);
-    font-size: clamp(15px, 4vw, 19px);
-    font-weight: 750;
 }
 
-.item:active {
-    background: #fafafa;
-}
-
-.item-icon {
-    width: 17px;
-    height: 17px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.arrow {
-    margin-left: auto;
-    color: var(--blue);
-    font-size: 16px;
-}
-
-/* CHAT BUTTON */
-
-.chat {
-    position: fixed;
-    right: 19px;
-    bottom: 100px;
-    width: 72px;
-    height: 72px;
-    border: 0;
-    border-radius: 50%;
-    background: #1760ed;
-    display: grid;
-    place-items: center;
-    z-index: 4;
-    box-shadow: 0 4px 15px #0002;
-}
-
-.bubble {
-    width: 36px;
-    height: 26px;
-    background: #fff;
-    border-radius: 50%;
-    position: relative;
-}
-
-.bubble::after {
+.stat-card::after {
     content: "";
     position: absolute;
-    left: 6px;
-    bottom: -4px;
-    width: 10px;
-    height: 10px;
+    width: 91px;
+    height: 91px;
+    top: -45px;
+    right: -45px;
     background: #fff;
-    transform: rotate(30deg);
+    border-radius: 50%;
+}
+
+.stat-icon {
+    flex: 0 0 53px;
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    background: #fff;
+    color: #657092;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.stat-icon svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.stat-info {
+    min-width: 0;
+    z-index: 1;
+}
+
+.stat-value {
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.stat-label {
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: #f4f4ff;
+}
+
+/* FLOATING CHAT BUTTON */
+
+.chat-button {
+    position: fixed;
+    right: 16px;
+    bottom: 28px;
+    width: 66px;
+    height: 66px;
+    border: 0;
+    border-radius: 50%;
+    background: #0873e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0 3px 10px #0002;
+    cursor: pointer;
+}
+
+.chat-inner {
+    width: 43px;
+    height: 38px;
+    background: white;
+    border-radius: 13px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-inner::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    right: 7px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(35deg);
     border-radius: 2px;
 }
 
-.online {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 22px;
-    height: 22px;
-    border: 3px solid #fff;
-    border-radius: 50%;
-    background: #45d889;
+.chat-arrow {
+    color: #508ad5;
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
 }
 
-/* NOTIFICATION */
+/* RESPONSIVE LAYOUT */
 
-.toast {
-    display: none;
-    position: fixed;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--navy);
-    color: #fff;
-    padding: 11px 16px;
-    border-radius: 7px;
-    z-index: 8;
-    font-size: 14px;
+@media (max-width: 500px) {
+    .topbar {
+        height: 150px;
+        padding: 0 9% 19px;
+    }
+
+    .nav-right {
+        gap: 25px;
+    }
+
+    .home-link {
+        width: 48px;
+        height: 40px;
+    }
+
+    .dashboard {
+        padding: 6px 26px 35px;
+    }
+
+    .stats {
+        gap: 35px;
+    }
+
+    .stat-card {
+        min-height: 110px;
+        padding: 18px 17px;
+        gap: 17px;
+    }
+
+    .stat-icon {
+        flex-basis: 53px;
+        width: 53px;
+        height: 53px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 18px;
+    }
+
+    .chat-button {
+        right: 16px;
+        bottom: 28px;
+    }
 }
 
-.toast.show {
-    display: block;
-}
-
-/* MOBILE SIZING */
-
-@media (max-width: 380px) {
-    .page {
-        width: calc(100% - 42px);
+@media (max-width: 360px) {
+    .dashboard {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
-    .balance {
-        padding: 13px 12px 15px;
+    .nav-right {
+        gap: 15px;
     }
 
-    .heading {
-        margin-bottom: 14px;
-    }
-
-    .wallet {
-        gap: 6px;
-        margin-bottom: 12px;
-    }
-
-    .name,
-    .amount {
-        font-size: 17px;
-    }
-
-    .actions {
-        gap: 10px;
-    }
-
-    .action {
-        height: 47px;
-        font-size: 16px;
-    }
-
-    .item {
-        min-height: 54px;
-        padding: 0 31px;
+    .stat-card {
         gap: 12px;
-        font-size: 15px;
+        padding-left: 13px;
     }
 
-    .item-icon {
-        width: 17px;
-        height: 17px;
+    .stat-icon {
+        flex-basis: 48px;
+        width: 48px;
+        height: 48px;
     }
 
-    .nav {
-        gap: 14px;
+    .stat-value {
+        font-size: 19px;
     }
 
-    .nav .home {
-        width: 43px;
-        height: 34px;
-        padding: 10px;
+    .stat-label {
+        font-size: 16px;
     }
 }
 </style>
@@ -375,215 +318,150 @@ h1 {
 
 <header class="topbar">
 
-    <button class="back" aria-label="Back" onclick="history.back()">
-        <svg viewBox="0 0 24 24">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-    </button>
+    <div class="nav-left">
+        <a class="back-link" href="index.html" aria-label="Back">
+            &rarr;
+        </a>
+    </div>
 
-    <nav class="nav">
+    <nav class="nav-right">
 
-        <button class="home" aria-label="Home" onclick="msg('Dashboard')">
+        <a class="nav-link home-link" href="index.html"
+           aria-label="Home">
             <svg viewBox="0 0 24 24">
-                <path d="m3 10 9-7 9 7M5.5 9v12h13V9M9 21v-7h6v7"/>
+                <path d="m3 10 9-7 9 7"/>
+                <path d="M5.5 9v12h13V9"/>
+                <path d="M9 21v-7h6v7"/>
             </svg>
-        </button>
+        </a>
 
-        <button class="down" aria-label="Menu" onclick="msg('Menu')">
-            <svg viewBox="0 0 24 24">
-                <path d="m5 9 7 7 7-7"/>
-            </svg>
-        </button>
+        <label class="language">
+            <span>English</span>
+            <select aria-label="Language"
+                    onchange="document.documentElement.lang=this.value">
+                <option value="en" selected>⌄</option>
+                <option value="fr">FR</option>
+                <option value="es">ES</option>
+            </select>
+        </label>
 
-        <button class="user" aria-label="Profile" onclick="msg('Profile')">
+        <a class="nav-link" href="index.html"
+           aria-label="Profile">
             <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="7.5" r="4"/>
-                <path d="M4 21c.7-4.2 3.5-6.5 8-6.5s7.3 2.3 8 6.5"/>
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
             </svg>
-        </button>
+        </a>
 
     </nav>
+
 </header>
 
-<main class="page">
+<main class="dashboard">
 
-    <section class="balance">
+    <section class="stats">
 
-        <div class="heading">
-            <h1>Account Balance</h1>
-            <span class="tag">WALLET</span>
-        </div>
-
-        <div class="wallet">
-
-            <span class="icon">
+        <!-- ALL TRANSACTIONS -->
+        <article class="stat-card">
+            <div class="stat-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M4 7V5a2 2 0 0 1 2-2h13v4M4 7h16a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V7h2Z"/>
-                    <path d="M16 12h6M18 12v.1"/>
+                    <path d="M4 8h16l-1 12H5L4 8Z"/>
+                    <path d="M4 8l3-5h10l3 5"/>
+                    <path d="M9 8a3 3 0 0 0 6 0"/>
                 </svg>
-            </span>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">24</div>
+                <div class="stat-label">All Transactions</div>
+            </div>
+        </article>
 
-            <span class="name">Main Wallet</span>
-            <strong class="amount">$100.00</strong>
-
-        </div>
-
-        <div class="wallet">
-
-            <span class="icon">
+        <!-- TOTAL DEPOSIT -->
+        <article class="stat-card">
+            <div class="stat-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="m2 8 10-6 10 6H2ZM4 21h16M6 10v8M10 10v8M14 10v8M18 10v8"/>
+                    <path d="M5 2h9l5 5v15H5V2Z"/>
+                    <path d="M14 2v6h5"/>
+                    <path d="M12 11v7"/>
+                    <path d="M9 14h6"/>
                 </svg>
-            </span>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">$100</div>
+                <div class="stat-label">Total Deposit</div>
+            </div>
+        </article>
 
-            <span class="name">Profit Wallet</span>
-            <strong class="amount">$5.00</strong>
-
-        </div>
-
-    </section>
-
-    <section class="actions">
-
-        <button class="action deposit" onclick="msg('Deposit')">
-            <svg viewBox="0 0 24 24">
-                <path d="M5 2h9l6 6v14H5zM14 2v6h6M12 11v7M9 14.5h6"/>
-            </svg>
-            Deposit
-        </button>
-
-        <button class="action invest" onclick="msg('Invest Now')">
-            <svg viewBox="0 0 24 24">
-                <path d="M20 4v16H4V4h12M13 8l4 4-4 4M17 12H9"/>
-            </svg>
-            Invest Now
-        </button>
-
-    </section>
-
-    <section class="menu">
-
-        <button class="item" onclick="msg('Dashboard')">
-            <span class="item-icon">
+        <!-- TOTAL INVESTMENT -->
+        <article class="stat-card">
+            <div class="stat-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/>
+                    <path d="M12 3 20 6v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-3Z"/>
+                    <path d="m8 12 3 3 5-6"/>
                 </svg>
-            </span>
-            <span>DASHBOARD</span>
-        </button>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">$256</div>
+                <div class="stat-label">Total Investment</div>
+            </div>
+        </article>
 
-        <button class="item" onclick="msg('All Schema')">
-            <span class="item-icon">
+        <!-- TOTAL PROFIT -->
+        <article class="stat-card">
+            <div class="stat-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M3 3h18v18H3z"/>
-                    <path d="m7 12 3 3 7-7"/>
+                    <rect x="3" y="5" width="18" height="14" rx="1"/>
+                    <path d="M3 9h18"/>
+                    <path d="M7 14h4"/>
                 </svg>
-            </span>
-            <span>ALL SCHEMA</span>
-        </button>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">$1,444</div>
+                <div class="stat-label">Total Profit</div>
+            </div>
+        </article>
 
-        <button class="item" onclick="msg('Schema Logs')">
-            <span class="item-icon">
+        <!-- TOTAL TRANSFER -->
+        <article class="stat-card">
+            <div class="stat-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M8 3h13v16M4 7h13v14H4z"/>
-                    <path d="M8 21l-4-4"/>
+                    <path d="M5 12h14"/>
+                    <path d="m12 5 7 7-7 7"/>
                 </svg>
-            </span>
-            <span>SCHEMA LOGS</span>
-        </button>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">$0</div>
+                <div class="stat-label">Total Transfer</div>
+            </div>
+        </article>
 
-        <button class="item" onclick="msg('All Transactions')">
-            <span class="item-icon">
+        <!-- TOTAL WITHDRAW -->
+        <article class="stat-card">
+            <div class="stat-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M3 8h18l-2 12H5L3 8ZM3 8l3-5h12l3 5M9 8a3 3 0 0 0 6 0"/>
+                    <rect x="4" y="3" width="16" height="18" rx="1"/>
+                    <path d="M8 8h8M8 12h3"/>
+                    <path d="m13 15 2 2 3-4"/>
                 </svg>
-            </span>
-            <span>ALL TRANSACTIONS</span>
-        </button>
-
-        <button class="item" onclick="msg('Add Money')">
-            <span class="item-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M5 2h9l6 6v14H5zM14 2v6h6M12 12v7M8.5 15.5h7"/>
-                </svg>
-            </span>
-            <span>ADD MONEY</span>
-        </button>
-
-        <button class="item" onclick="msg('Add Money Log')">
-            <span class="item-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M3 6h7l2 3h9v12H3zM12 12v6M9 15h6"/>
-                </svg>
-            </span>
-            <span>ADD MONEY LOG</span>
-        </button>
-
-        <button class="item" onclick="msg('Wallet Exchange')">
-            <span class="item-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20 8a8 8 0 0 0-14-3L3 8M3 3v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5"/>
-                    <path d="m10 10 2-2 2 2m-2-2v8m-3-3h6"/>
-                </svg>
-            </span>
-            <span>WALLET EXCHANGE</span>
-        </button>
-
-        <button class="item" onclick="msg('Send Money')">
-            <span class="item-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20 4v16H4V4h12M13 8l4 4-4 4M17 12H9"/>
-                </svg>
-            </span>
-            <span>SEND MONEY</span>
-        </button>
-
-        <button class="item" onclick="msg('Send Money Log')">
-            <span class="item-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M6 19h12a4 4 0 0 0 .4-8A6.5 6.5 0 0 0 6 9.5 4.8 4.8 0 0 0 6 19Z"/>
-                </svg>
-            </span>
-            <span>SEND MONEY LOG</span>
-        </button>
-
-        <button class="item" aria-expanded="true" onclick="msg('Withdraw')">
-            <span class="item-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="m2 8 10-6 10 6H2ZM4 21h16M6 10v8M10 10v8M14 10v8M18 10v8"/>
-                </svg>
-            </span>
-            <span>WITHDRAW</span>
-            <span class="arrow">▴</span>
-        </button>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">$0</div>
+                <div class="stat-label">Total Withdraw</div>
+            </div>
+        </article>
 
     </section>
 
 </main>
 
-<button class="chat" aria-label="Chat support" onclick="msg('Chat support')">
-    <span class="bubble"></span>
-    <span class="online"></span>
+<!-- Floating chat icon -->
+<button class="chat-button" type="button"
+        aria-label="Chat support"
+        onclick="alert('Please connect your support chat service here.')">
+    <span class="chat-inner">
+        <span class="chat-arrow">&#9650;</span>
+    </span>
 </button>
-
-<div class="toast" id="toast"></div>
-
-<script>
-let timer;
-
-function msg(text) {
-    const toast = document.getElementById('toast');
-
-    toast.textContent = text + ' selected';
-    toast.classList.add('show');
-
-    clearTimeout(timer);
-
-    timer = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 1800);
-}
-</script>
 
 </body>
 </html>
