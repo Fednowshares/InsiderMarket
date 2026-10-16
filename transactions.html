@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>All Transactions | Fednow Shares</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #555f64;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* =========================
+   TOP NAVIGATION
+========================= */
+
+.topbar {
+    height: 136px;
+    border-bottom: 1px solid #eeeeee;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    padding: 0 8.5% 20px;
+}
+
+.back {
+    width: 24px;
+    height: 24px;
+
+    border: none;
+    background: transparent;
+
+    color: #528fe0;
+    padding: 0;
+}
+
+.back svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Navigation */
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav button {
+    border: none;
+    background: transparent;
+    color: #26343a;
+}
+
+/* Home */
+
+.nav .home {
+    width: 61px;
+    height: 50px;
+
+    padding: 15px;
+
+    border-radius: 7px;
+
+    background: #528fe0;
+    color: #ffffff;
+}
+
+.nav .down,
+.nav .user {
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.page {
+    width: calc(100% - 42px);
+    max-width: 780px;
+
+    margin: 0 auto;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-header {
+    padding: 25px 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-title {
+    margin: 0;
+
+    color: #555f64;
+
+    font-size: clamp(21px, 5vw, 29px);
+    font-weight: 750;
+
+    letter-spacing: -0.3px;
+}
+
+.transaction-count {
+    background: #528fe0;
+    color: #ffffff;
+
+    padding: 7px 11px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/* =========================
+   TRANSACTION CARD
+========================= */
+
+.transactions {
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+}
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.transaction-head {
+    min-height: 48px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(170px, 1fr)
+        110px
+        105px;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    background: #f7f9fc;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #7a858b;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+/* =========================
+   TRANSACTION ROW
+========================= */
+
+.transaction {
+    min-height: 75px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(170px, 1fr)
+        110px
+        105px;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.transaction:last-child {
+    border-bottom: none;
+}
+
+/* Transaction information */
+
+.transaction-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.transaction-icon {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #edf4ff;
+    color: #528fe0;
+}
+
+.transaction-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* Text */
+
+.transaction-name {
+    margin: 0 0 4px;
+
+    color: #4f595e;
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.transaction-date {
+    margin: 0;
+
+    color: #9aa2a7;
+
+    font-size: 10px;
+}
+
+/* Amount */
+
+.amount {
+    font-size: 13px;
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+.amount.positive {
+    color: #299e91;
+}
+
+.amount.negative {
+    color: #e35d6a;
+}
+
+/* Status */
+
+.status {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    padding: 6px 9px;
+
+    border-radius: 4px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.status.completed {
+    background: #e8f8f3;
+    color: #299e91;
+}
+
+.status.pending {
+    background: #fff5df;
+    color: #c38a20;
+}
+
+.status.failed {
+    background: #ffecef;
+    color: #d65362;
+}
+
+/* =========================
+   EMPTY / MORE
+========================= */
+
+.transaction-footer {
+    padding: 18px;
+
+    text-align: center;
+
+    color: #929ca2;
+
+    font-size: 11px;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.pagination {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 22px 0 25px;
+}
+
+.pagination button {
+    min-width: 34px;
+    height: 34px;
+
+    border: 1px solid #e5e8eb;
+    border-radius: 5px;
+
+    background: #ffffff;
+
+    color: #667177;
+
+    font-size: 11px;
+}
+
+.pagination button.active {
+    background: #528fe0;
+    border-color: #528fe0;
+
+    color: #ffffff;
+}
+
+/* =========================
+   CHAT BUTTON
+========================= */
+
+.chat {
+    position: fixed;
+
+    right: 19px;
+    bottom: 100px;
+
+    width: 72px;
+    height: 72px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #1760ed;
+
+    display: grid;
+    place-items: center;
+
+    z-index: 5;
+
+    box-shadow: 0 4px 15px #0002;
+}
+
+.bubble {
+    width: 36px;
+    height: 26px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    position: relative;
+}
+
+.bubble::after {
+    content: "";
+
+    position: absolute;
+
+    left: 6px;
+    bottom: -4px;
+
+    width: 10px;
+    height: 10px;
+
+    background: #ffffff;
+
+    transform: rotate(30deg);
+
+    border-radius: 2px;
+}
+
+.online {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 22px;
+    height: 22px;
+
+    border: 3px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: #45d889;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    display: none;
+
+    position: fixed;
+
+    top: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #103570;
+    color: #ffffff;
+
+    padding: 11px 16px;
+
+    border-radius: 7px;
+
+    z-index: 20;
+
+    font-size: 13px;
+}
+
+.toast.show {
+    display: block;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        height: 105px;
+
+        padding:
+            0
+            21px
+            16px;
+    }
+
+    .nav {
+        gap: 15px;
+    }
+
+    .nav .home {
+        width: 45px;
+        height: 36px;
+
+        padding: 10px;
+    }
+
+    .nav .down,
+    .nav .user {
+        width: 25px;
+        height: 25px;
+    }
+
+    .page {
+        width: calc(100% - 28px);
+    }
+
+    .page-header {
+        padding: 20px 0 14px;
+    }
+
+    .page-title {
+        font-size: 21px;
+    }
+
+    .transaction-count {
+        font-size: 9px;
+        padding: 6px 8px;
+    }
+
+    .transaction-head {
+        grid-template-columns:
+            minmax(130px, 1fr)
+            75px
+            75px;
+
+        padding: 0 10px;
+
+        font-size: 8px;
+    }
+
+    .transaction {
+        grid-template-columns:
+            minmax(130px, 1fr)
+            75px
+            75px;
+
+        min-height: 70px;
+
+        padding: 0 10px;
+    }
+
+    .transaction-info {
+        gap: 8px;
+    }
+
+    .transaction-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .transaction-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .transaction-name {
+        font-size: 11px;
+    }
+
+    .transaction-date {
+        font-size: 8px;
+    }
+
+    .amount {
+        font-size: 10px;
+    }
+
+    .status {
+        padding: 5px 6px;
+        font-size: 7px;
+    }
+
+    .chat {
+        width: 60px;
+        height: 60px;
+
+        right: 15px;
+        bottom: 30px;
+    }
+
+    .bubble {
+        width: 29px;
+        height: 21px;
+    }
+
+    .online {
+        width: 18px;
+        height: 18px;
+        border-width: 2px;
+    }
+}
+
+/* Very small phones */
+
+@media (max-width: 370px) {
+
+    .transaction-head {
+        grid-template-columns:
+            minmax(115px, 1fr)
+            65px
+            65px;
+    }
+
+    .transaction {
+        grid-template-columns:
+            minmax(115px, 1fr)
+            65px
+            65px;
+    }
+
+    .transaction-name {
+        font-size: 10px;
+    }
+
+    .transaction-date {
+        font-size: 7px;
+    }
+
+    .amount {
+        font-size: 9px;
+    }
+
+    .status {
+        font-size: 6.5px;
+        padding: 4px 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TOP NAVIGATION
+========================= -->
+
+<header class="topbar">
+
+    <button class="back" aria-label="Back" onclick="goBack()">
+        <svg viewBox="0 0 24 24">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+        </svg>
+    </button>
+
+    <nav class="nav">
+
+        <button
+            class="home"
+            aria-label="Home"
+            onclick="goHome()">
+
+            <svg viewBox="0 0 24 24">
+                <path d="m3 10 9-7 9 7"/>
+                <path d="M5.5 9v12h13V9"/>
+                <path d="M9 21v-7h6v7"/>
+            </svg>
+
+        </button>
+
+        <button
+            class="down"
+            aria-label="Menu"
+            onclick="showMessage('Menu')">
+
+            <svg viewBox="0 0 24 24">
+                <path d="m5 9 7 7 7-7"/>
+            </svg>
+
+        </button>
+
+        <button
+            class="user"
+            aria-label="Profile"
+            onclick="showMessage('Profile')">
+
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="7.5" r="4"/>
+                <path d="M4 21c.7-4.2 3.5-6.5 8-6.5s7.3 2.3 8 6.5"/>
+            </svg>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="page">
+
+    <!-- PAGE TITLE -->
+
+    <div class="page-header">
+
+        <h1 class="page-title">
+            All Transactions
+        </h1>
+
+        <span class="transaction-count">
+            TRANSACTIONS
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTIONS
+    ========================= -->
+
+    <section class="transactions">
+
+        <!-- TABLE HEADER -->
+
+        <div class="transaction-head">
+
+            <span>Transaction</span>
+
+            <span>Amount</span>
+
+            <span>Status</span>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION 1
+        ========================= -->
+
+        <div class="transaction">
+
+            <div class="transaction-info">
+
+                <div class="transaction-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 2h9l6 6v14H5z"/>
+                        <path d="M14 2v6h6"/>
+                        <path d="M12 11v7"/>
+                        <path d="M9 15h6"/>
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p class="transaction-name">
+                        Deposit
+                    </p>
+
+                    <p class="transaction-date">
+                        Oct 16, 2026 • 10:42 AM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="amount positive">
+                +$100.00
+            </div>
+
+            <div>
+                <span class="status completed">
+                    Completed
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION 2
+        ========================= -->
+
+        <div class="transaction">
+
+            <div class="transaction-info">
+
+                <div class="transaction-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 7V5a2 2 0 0 1 2-2h13v4"/>
+                        <path d="M4 7h16a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V7h2Z"/>
+                        <path d="M16 12h6"/>
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p class="transaction-name">
+                        Investment
+                    </p>
+
+                    <p class="transaction-date">
+                        Oct 15, 2026 • 4:25 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="amount negative">
+                -$50.00
+            </div>
+
+            <div>
+                <span class="status completed">
+                    Completed
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION 3
+        ========================= -->
+
+        <div class="transaction">
+
+            <div class="transaction-info">
+
+                <div class="transaction-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4v16H4V4h12"/>
+                        <path d="M13 8l4 4-4 4"/>
+                        <path d="M17 12H9"/>
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p class="transaction-name">
+                        Wallet Transfer
+                    </p>
+
+                    <p class="transaction-date">
+                        Oct 14, 2026 • 1:18 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="amount negative">
+                -$20.00
+            </div>
+
+            <div>
+                <span class="status pending">
+                    Pending
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION 4
+        ========================= -->
+
+        <div class="transaction">
+
+            <div class="transaction-info">
+
+                <div class="transaction-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="m2 8 10-6 10 6H2Z"/>
+                        <path d="M4 21h16"/>
+                        <path d="M6 10v8"/>
+                        <path d="M10 10v8"/>
+                        <path d="M14 10v8"/>
+                        <path d="M18 10v8"/>
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p class="transaction-name">
+                        Profit
+                    </p>
+
+                    <p class="transaction-date">
+                        Oct 13, 2026 • 9:50 AM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="amount positive">
+                +$5.00
+            </div>
+
+            <div>
+                <span class="status completed">
+                    Completed
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION 5
+        ========================= -->
+
+        <div class="transaction">
+
+            <div class="transaction-info">
+
+                <div class="transaction-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 8h18l-2 12H5L3 8Z"/>
+                        <path d="M3 8l3-5h12l3 5"/>
+                        <path d="M9 8a3 3 0 0 0 6 0"/>
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p class="transaction-name">
+                        Withdrawal
+                    </p>
+
+                    <p class="transaction-date">
+                        Oct 12, 2026 • 6:31 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="amount negative">
+                -$30.00
+            </div>
+
+            <div>
+                <span class="status completed">
+                    Completed
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION 6
+        ========================= -->
+
+        <div class="transaction">
+
+            <div class="transaction-info">
+
+                <div class="transaction-icon">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 7h16"/>
+                        <path d="M4 12h16"/>
+                        <path d="M4 17h16"/>
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <p class="transaction-name">
+                        Deposit
+                    </p>
+
+                    <p class="transaction-date">
+                        Oct 10, 2026 • 11:06 AM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="amount positive">
+                +$75.00
+            </div>
+
+            <div>
+                <span class="status failed">
+                    Failed
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="transaction-footer">
+            Showing recent transactions
+        </div>
+
+    </section>
+
+
+    <!-- PAGINATION -->
+
+    <div class="pagination">
+
+        <button onclick="showMessage('Previous page')">
+            ‹
+        </button>
+
+        <button class="active">
+            1
+        </button>
+
+        <button onclick="showMessage('Page 2')">
+            2
+        </button>
+
+        <button onclick="showMessage('Page 3')">
+            3
+        </button>
+
+        <button onclick="showMessage('Next page')">
+            ›
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- CHAT BUTTON -->
+
+<button
+    class="chat"
+    aria-label="Chat support"
+    onclick="showMessage('Chat support')">
+
+    <span class="bubble"></span>
+
+    <span class="online"></span>
+
+</button>
+
+
+<!-- NOTIFICATION -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<script>
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goBack() {
+
+    if (document.referrer) {
+        history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+
+}
+
+
+function goHome() {
+
+    window.location.href = "index.html";
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+let toastTimer;
+
+function showMessage(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(function () {
+
+        toast.classList.remove("show");
+
+    }, 1800);
+
+}
+
+</script>
+
+</body>
+</html>
