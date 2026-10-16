@@ -14,7 +14,6 @@
 :root {
     --primary: #5861ed;
     --page-bg: #f7f7f7;
-    --text: #ffffff;
 }
 
 body {
@@ -27,18 +26,13 @@ body {
 /* TOP NAVIGATION */
 
 .topbar {
-    height: 150px;
+    height: 88px;
     background: #fff;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 0 9% 19px;
+    padding: 0 9% 15px;
     border-bottom: 1px solid #eee;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
 }
 
 .back-link {
@@ -83,13 +77,13 @@ body {
 .language {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     font-size: 15px;
     white-space: nowrap;
 }
 
 .language select {
-    width: 14px;
+    width: 18px;
     border: 0;
     outline: none;
     background: transparent;
@@ -103,13 +97,13 @@ body {
     width: 100%;
     max-width: 760px;
     margin: 0 auto;
-    padding: 6px 26px 35px;
+    padding: 12px 26px 30px;
 }
 
 .stats {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 24px;
 }
 
 /* SUMMARY CARDS */
@@ -124,7 +118,7 @@ body {
     overflow: hidden;
     background: var(--primary);
     border-radius: 10px;
-    color: var(--text);
+    color: #fff;
 }
 
 .stat-card::after {
@@ -171,7 +165,7 @@ body {
     line-height: 1.35;
     font-weight: 400;
     margin-bottom: 10px;
-    color: white;
+    color: #fff;
 }
 
 .stat-label {
@@ -181,104 +175,50 @@ body {
     color: #f4f4ff;
 }
 
-/* FLOATING CHAT BUTTON */
-
-.chat-button {
-    position: fixed;
-    right: 16px;
-    bottom: 28px;
-    width: 66px;
-    height: 66px;
-    border: 0;
-    border-radius: 50%;
-    background: #0873e8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    box-shadow: 0 3px 10px #0002;
-    cursor: pointer;
-}
-
-.chat-inner {
-    width: 43px;
-    height: 38px;
-    background: white;
-    border-radius: 13px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chat-inner::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    right: 7px;
-    width: 12px;
-    height: 12px;
-    background: white;
-    transform: rotate(35deg);
-    border-radius: 2px;
-}
-
-.chat-arrow {
-    color: #508ad5;
-    font-size: 18px;
-    position: relative;
-    z-index: 1;
-}
-
 /* RESPONSIVE LAYOUT */
 
 @media (max-width: 500px) {
     .topbar {
-        height: 150px;
-        padding: 0 9% 19px;
+        height: 78px;
+        padding: 0 9% 13px;
     }
 
     .nav-right {
-        gap: 25px;
+        gap: 20px;
     }
 
     .home-link {
-        width: 48px;
-        height: 40px;
+        width: 43px;
+        height: 36px;
     }
 
     .dashboard {
-        padding: 6px 26px 35px;
+        padding: 10px 26px 25px;
     }
 
     .stats {
-        gap: 35px;
+        gap: 22px;
     }
 
     .stat-card {
-        min-height: 110px;
-        padding: 18px 17px;
-        gap: 17px;
+        min-height: 105px;
+        padding: 16px;
+        gap: 15px;
     }
 
     .stat-icon {
-        flex-basis: 53px;
-        width: 53px;
-        height: 53px;
+        flex-basis: 50px;
+        width: 50px;
+        height: 50px;
     }
 
     .stat-value {
         font-size: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .stat-label {
-        font-size: 18px;
-    }
-
-    .chat-button {
-        right: 16px;
-        bottom: 28px;
+        font-size: 17px;
     }
 }
 
@@ -289,7 +229,7 @@ body {
     }
 
     .nav-right {
-        gap: 15px;
+        gap: 14px;
     }
 
     .stat-card {
@@ -298,9 +238,9 @@ body {
     }
 
     .stat-icon {
-        flex-basis: 48px;
-        width: 48px;
-        height: 48px;
+        flex-basis: 46px;
+        width: 46px;
+        height: 46px;
     }
 
     .stat-value {
@@ -318,11 +258,9 @@ body {
 
 <header class="topbar">
 
-    <div class="nav-left">
-        <a class="back-link" href="index.html" aria-label="Back">
-            &rarr;
-        </a>
-    </div>
+    <a class="back-link" href="index.html" aria-label="Back">
+        &#8592;
+    </a>
 
     <nav class="nav-right">
 
@@ -337,8 +275,7 @@ body {
 
         <label class="language">
             <span>English</span>
-            <select aria-label="Language"
-                    onchange="document.documentElement.lang=this.value">
+            <select aria-label="Language">
                 <option value="en" selected>⌄</option>
                 <option value="fr">FR</option>
                 <option value="es">ES</option>
@@ -453,15 +390,6 @@ body {
     </section>
 
 </main>
-
-<!-- Floating chat icon -->
-<button class="chat-button" type="button"
-        aria-label="Chat support"
-        onclick="alert('Please connect your support chat service here.')">
-    <span class="chat-inner">
-        <span class="chat-arrow">&#9650;</span>
-    </span>
-</button>
 
 </body>
 </html>
