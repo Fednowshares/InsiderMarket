@@ -72,11 +72,10 @@ body {
 }
 
 .upgrade-notice {
-    position: relative;
     background: #fff7df;
     border: 1px solid #f1e6c9;
     border-radius: 4px;
-    padding: 18px 145px 17px 18px;
+    padding: 18px;
     min-height: 150px;
     margin-bottom: 33px;
     box-shadow: 0 2px 5px rgba(0,0,0,.04);
@@ -114,33 +113,6 @@ body {
     font-size: 20px;
     line-height: 1.6;
     margin-top: 7px;
-}
-
-.notice-actions {
-    position: absolute;
-    right: 18px;
-    top: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.notice-actions button {
-    width: 118px;
-    height: 45px;
-    border: 0;
-    border-radius: 25px;
-    color: #fff;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.submit-button {
-    background: #0c3475;
-}
-
-.later-button {
-    background: #528edb;
 }
 
 .deposit-card {
@@ -298,7 +270,7 @@ body {
     }
 
     .upgrade-notice {
-        padding: 15px 12px 15px 18px;
+        padding: 15px 18px;
         min-height: 165px;
         margin-bottom: 33px;
     }
@@ -315,19 +287,6 @@ body {
     .notice-text {
         font-size: 20px;
         line-height: 1.6;
-        padding-right: 0;
-    }
-
-    .notice-actions {
-        position: static;
-        float: right;
-        margin: -80px 0 0 8px;
-        gap: 5px;
-    }
-
-    .notice-actions button {
-        width: 118px;
-        height: 45px;
     }
 
     .card-header {
@@ -375,15 +334,6 @@ body {
         width: calc(100% - 24px);
     }
 
-    .notice-actions {
-        margin-right: 0;
-    }
-
-    .notice-actions button {
-        width: 95px;
-        font-size: 11px;
-    }
-
     .history-button {
         padding: 11px 12px;
         font-size: 11px;
@@ -425,6 +375,7 @@ body {
 
 <main class="page">
 
+    <!-- Account upgrade notice: SUBMIT and LATER buttons removed -->
     <section class="upgrade-notice">
         <div>
             <span class="notice-icon">
@@ -439,21 +390,14 @@ body {
         <p class="notice-text">
             is incomplete. Check your account requirements before making a withdrawal.
         </p>
-
-        <div class="notice-actions">
-            <button class="submit-button" onclick="location.href='dashboard.html'">
-                ⓘ SUBMIT
-            </button>
-            <button class="later-button" onclick="this.closest('.upgrade-notice').style.display='none'">
-                × LATER
-            </button>
-        </div>
     </section>
 
     <section class="deposit-card">
         <div class="card-header">
             <h1>Add Money</h1>
-            <button class="history-button" onclick="location.href='transactions.html'">
+
+            <button class="history-button"
+                    onclick="location.href='add-money-log.html'">
                 DEPOSIT HISTORY
             </button>
         </div>
@@ -465,7 +409,9 @@ body {
                 </svg>
             </div>
 
-            <h2 class="deposit-amount" id="depositAmount">$0.00 Deposit</h2>
+            <h2 class="deposit-amount" id="depositAmount">
+                $0.00 Deposit
+            </h2>
 
             <p class="deposit-message" id="depositMessage">
                 Deposit details will appear here after your payment is verified.
@@ -475,8 +421,9 @@ body {
                 Transaction ID: Pending verification
             </p>
 
-            <!-- Updated link: returns to the Add Money page -->
-            <button class="deposit-again" onclick="location.href='add-money.html'">
+            <!-- Deposit Again returns to the Add Money page -->
+            <button class="deposit-again"
+                    onclick="location.href='add-money.html'">
                 + DEPOSIT AGAIN
             </button>
         </div>
@@ -497,20 +444,20 @@ function toggleMenu() {
 }
 
 function openSupport() {
-    // Add your real customer-support link here.
+    // Replace this with your real customer-support link when available.
     alert("Please add your customer support link.");
 }
 
 const params = new URLSearchParams(window.location.search);
 const amount = Number(params.get("amount"));
 
-if (Number.isFinite(amount) && amount > 0) {
+if (params.has("amount") && Number.isFinite(amount) && amount > 0) {
     document.getElementById("depositAmount").textContent =
         "$" + amount.toFixed(2) + " Deposit";
 }
 
-// A payment must be verified by your backend before it is
-// displayed as successfully credited to the user's account.
+// Payment status and transaction IDs must come from a trusted
+// backend after verifying a real payment.
 </script>
 
 </body>
