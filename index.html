@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -227,6 +227,8 @@ h1 {
     font-size: 16px;
 }
 
+/* SUPPORT BUTTON */
+
 .chat {
     position: fixed;
     right: 19px;
@@ -270,6 +272,68 @@ h1 {
     border: 3px solid #fff;
     border-radius: 50%;
     background: #45d889;
+}
+
+/* SUPPORT MENU */
+
+.support-menu {
+    display: none;
+    position: fixed;
+    right: 19px;
+    bottom: 105px;
+    width: 210px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.15);
+    overflow: hidden;
+    z-index: 10;
+    border: 1px solid #e5e5e5;
+}
+
+.support-menu.show {
+    display: block;
+}
+
+.support-title {
+    padding: 13px 15px;
+    background: #103570;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.support-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 15px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    color: #333;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.support-option:last-child {
+    border-bottom: 0;
+}
+
+.support-option:hover {
+    background: #f5f7fa;
+}
+
+.support-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.support-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .toast {
@@ -316,6 +380,11 @@ h1 {
     .nav {
         gap: 14px;
     }
+
+    .support-menu {
+        right: 10px;
+        bottom: 105px;
+    }
 }
 </style>
 </head>
@@ -334,7 +403,7 @@ h1 {
 
     <nav class="nav">
 
-        <!-- FIXED: Home icon redirects to home.html -->
+        <!-- Home icon redirects to home.html -->
         <button class="home" aria-label="Home"
                 onclick="window.location.href='home.html'">
             <svg viewBox="0 0 24 24">
@@ -392,7 +461,6 @@ h1 {
     </section>
 
     <section class="actions">
-      
 
 <a href="deposit.html" class="action deposit">
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -479,7 +547,7 @@ h1 {
         <button class="item" onclick="msg('Wallet Exchange')">
             <span class="item-icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M20 8a8 8 0 0 0-14-3L3 8M3 3v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5"/>
+                    <path d="M20 8a8 8 0 0 0-14-3L3 8M3 3v5h5M4 16a8 8 0 0 0 14 3l3-3m3 5v-5h-5"/>
                 </svg>
             </span>
             <span>WALLET EXCHANGE</span>
@@ -517,11 +585,43 @@ h1 {
 
 </main>
 
-<button class="chat" aria-label="Chat support"
-        onclick="msg('Chat support')">
+<!-- SUPPORT BUTTON -->
+<button class="chat" aria-label="Customer Support"
+        onclick="toggleSupport()">
     <span class="bubble"></span>
     <span class="online"></span>
 </button>
+
+<!-- SUPPORT OPTIONS -->
+<div class="support-menu" id="supportMenu">
+
+    <div class="support-title">
+        Customer Support
+    </div>
+
+    <!-- Email Support -->
+    <button class="support-option" onclick="openEmail()">
+        <span class="support-icon">
+            <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="m3 7 9 6 9-6"/>
+            </svg>
+        </span>
+        <span>Email Support</span>
+    </button>
+
+    <!-- WhatsApp Support -->
+    <button class="support-option" onclick="openWhatsApp()">
+        <span class="support-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/>
+                <path d="M8.5 8.5c.3 2.1 2 4.2 4.2 5.2l1.5-.9c.2-.1.5-.1.7.1l1.2 1c.2.2.2.5 0 .7-.7.7-1.8 1-2.7.7-3.2-1-5.7-3.5-6.7-6.7-.3-.9 0-2 .7-2.7.2-.2.5-.2.7 0l1 1.2c.2.2.2.5.1.7l-.7 1.4Z"/>
+            </svg>
+        </span>
+        <span>WhatsApp Support</span>
+    </button>
+
+</div>
 
 <div class="toast" id="toast" role="status"></div>
 
@@ -540,7 +640,41 @@ function msg(text) {
         toast.classList.remove('show');
     }, 1800);
 }
+
+/* SUPPORT */
+
+function toggleSupport() {
+    const menu = document.getElementById("supportMenu");
+    menu.classList.toggle("show");
+}
+
+function openEmail() {
+    window.location.href =
+        "mailto:Fednowsharesteam@gmail.com?subject=Fednow%20Shares%20Support";
+}
+
+function openWhatsApp() {
+    window.open(
+        "https://wa.me/447549589541?text=Hello%20Fednow%20Shares%20Support%2C%20I%20need%20assistance.",
+        "_blank"
+    );
+}
+
+/* Close support menu when clicking outside it */
+document.addEventListener("click", function(event) {
+    const menu = document.getElementById("supportMenu");
+    const button = document.querySelector(".chat");
+
+    if (
+        menu.classList.contains("show") &&
+        !menu.contains(event.target) &&
+        !button.contains(event.target)
+    ) {
+        menu.classList.remove("show");
+    }
+});
 </script>
 
 </body>
 </html>
+```
