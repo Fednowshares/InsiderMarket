@@ -235,6 +235,7 @@ body {
     align-items: center;
     box-shadow: 0 3px 12px rgba(0,0,0,.15);
     cursor: pointer;
+    z-index: 1001;
 }
 
 .chat-button svg {
@@ -252,6 +253,54 @@ body {
     background: #39d29b;
     border: 3px solid white;
     border-radius: 50%;
+}
+
+.support-menu {
+    display: none;
+    position: fixed;
+    right: 30px;
+    bottom: 108px;
+    z-index: 1000;
+    background: #fff;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.18);
+    width: 230px;
+}
+
+.support-menu.open {
+    display: block;
+}
+
+.support-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #172d32;
+    margin-bottom: 13px;
+}
+
+.support-link {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 13px 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.email-support {
+    background: #568ed7;
+    margin-bottom: 10px;
+}
+
+.whatsapp-support {
+    background: #25D366;
+}
+
+.support-link:hover {
+    opacity: .9;
 }
 
 @media (max-width: 600px) {
@@ -327,6 +376,11 @@ body {
         right: 10px;
         bottom: 70px;
     }
+
+    .support-menu {
+        right: 10px;
+        bottom: 145px;
+    }
 }
 
 @media (max-width: 370px) {
@@ -375,7 +429,6 @@ body {
 
 <main class="page">
 
-    <!-- Account upgrade notice: SUBMIT and LATER buttons removed -->
     <section class="upgrade-notice">
         <div>
             <span class="notice-icon">
@@ -388,7 +441,7 @@ body {
         </div>
 
         <p class="notice-text">
-            Dear Customer. Your account is fully active now you can deposit now 
+            Dear Customer. Your account is fully active now you can deposit now
         </p>
     </section>
 
@@ -421,7 +474,6 @@ body {
                 Transaction ID: Pending verification
             </p>
 
-            <!-- Deposit Again returns to the Add Money page -->
             <button class="deposit-again"
                     onclick="location.href='add-money.html'">
                 + DEPOSIT AGAIN
@@ -431,12 +483,34 @@ body {
 
 </main>
 
-<button class="chat-button" onclick="openSupport()" aria-label="Customer support">
+<!-- Customer support button -->
+<button class="chat-button"
+        onclick="openSupport()"
+        aria-label="Open customer support options"
+        aria-expanded="false"
+        aria-controls="supportMenu">
     <svg viewBox="0 0 24 24">
         <path d="M12 3C6.9 3 3 6.5 3 11c0 2.1.9 4 2.5 5.4L5 21l4.8-2.1c.7.2 1.5.3 2.2.3 5.1 0 9-3.5 9-8.2S17.1 3 12 3Zm0 2c3.9 0 7 2.5 7 6s-3.1 6.2-7 6.2c-.7 0-1.5-.1-2.2-.3l-.7-.2-2.1.9.2-2.2-.7-.6C5.5 13.7 5 12.4 5 11c0-3.5 3.1-6 7-6Z"/>
     </svg>
     <span class="chat-dot"></span>
 </button>
+
+<!-- Email and WhatsApp support options -->
+<div class="support-menu" id="supportMenu" aria-label="Customer support options">
+    <p class="support-title">Customer Support</p>
+
+    <a class="support-link email-support"
+       href="mailto:Fednowsharesteam@gmail.com?subject=Fednow%20Shares%20Customer%20Support">
+        Email Support
+    </a>
+
+    <a class="support-link whatsapp-support"
+       href="https://wa.me/447549589541"
+       target="_blank"
+       rel="noopener noreferrer">
+        WhatsApp Support
+    </a>
+</div>
 
 <script>
 function toggleMenu() {
@@ -444,9 +518,30 @@ function toggleMenu() {
 }
 
 function openSupport() {
-    // Replace this with your real customer-support link when available.
-    alert("Please add your customer support link.");
+    const supportMenu = document.getElementById("supportMenu");
+    const chatButton = document.querySelector(".chat-button");
+    const isOpen = supportMenu.classList.toggle("open");
+
+    chatButton.setAttribute("aria-expanded", String(isOpen));
 }
+
+document.addEventListener("click", function(event) {
+    const supportMenu = document.getElementById("supportMenu");
+    const chatButton = document.querySelector(".chat-button");
+
+    if (!supportMenu.contains(event.target) &&
+        !chatButton.contains(event.target)) {
+        supportMenu.classList.remove("open");
+        chatButton.setAttribute("aria-expanded", "false");
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.getElementById("supportMenu").classList.remove("open");
+        document.querySelector(".chat-button").setAttribute("aria-expanded", "false");
+    }
+});
 
 const params = new URLSearchParams(window.location.search);
 const amount = Number(params.get("amount"));
