@@ -36,9 +36,7 @@ button {
     cursor: pointer;
 }
 
-/* =========================
-   TOP HEADER
-========================= */
+/* TOP HEADER */
 
 .topbar {
     height: 136px;
@@ -96,9 +94,7 @@ button {
     stroke-linejoin: round;
 }
 
-/* =========================
-   MAIN CONTAINER
-========================= */
+/* MAIN CONTAINER */
 
 .page {
     width: calc(100% - 42px);
@@ -106,9 +102,7 @@ button {
     margin: 55px auto 70px;
 }
 
-/* =========================
-   WITHDRAWAL CARD
-========================= */
+/* WITHDRAWAL CARD */
 
 .withdraw-card {
     border: 1px solid #dcdfe3;
@@ -118,9 +112,7 @@ button {
     overflow: hidden;
 }
 
-/* =========================
-   CARD HEADER
-========================= */
+/* CARD HEADER */
 
 .card-header {
     min-height: 117px;
@@ -147,17 +139,13 @@ button {
     font-size: 16px;
 }
 
-/* =========================
-   CARD CONTENT
-========================= */
+/* CARD CONTENT */
 
 .card-content {
     padding: 26px 22px 24px;
 }
 
-/* =========================
-   LABELS
-========================= */
+/* LABELS */
 
 .label {
     display: block;
@@ -167,9 +155,7 @@ button {
     font-weight: 500;
 }
 
-/* =========================
-   PAYMENT METHOD
-========================= */
+/* PAYMENT METHOD */
 
 .payment-select {
     position: relative;
@@ -184,7 +170,7 @@ button {
     border-radius: 6px;
     background: #ffffff;
     color: #5c6267;
-    font-size: 22px;
+    font-size: 20px;
     appearance: none;
     -webkit-appearance: none;
     outline: none;
@@ -200,9 +186,23 @@ button {
     pointer-events: none;
 }
 
-/* =========================
-   CHARGE NOTICE
-========================= */
+/* NETWORK DROPDOWN */
+
+#networkSelect {
+    width: 100%;
+    height: 58px;
+    padding: 0 48px 0 20px;
+    border: 4px solid #d1d1d1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #5c6267;
+    font-size: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+/* CHARGE NOTICE */
 
 .charge-notice {
     margin: 7px 0 27px;
@@ -212,9 +212,7 @@ button {
     line-height: 1.7;
 }
 
-/* =========================
-   AMOUNT
-========================= */
+/* AMOUNT */
 
 .amount-row {
     display: grid;
@@ -226,6 +224,8 @@ button {
 }
 
 .amount-input {
+    width: 100%;
+    min-width: 0;
     height: 80px;
     border: 0;
     outline: none;
@@ -252,9 +252,7 @@ button {
     font-size: 17px;
 }
 
-/* =========================
-   DESCRIPTION
-========================= */
+/* DESCRIPTION */
 
 .description {
     margin: 0 0 24px;
@@ -263,9 +261,7 @@ button {
     color: #51585d;
 }
 
-/* =========================
-   WALLET
-========================= */
+/* WALLET */
 
 .wallet-title {
     margin: 0 0 23px;
@@ -274,18 +270,13 @@ button {
 }
 
 .network {
-    margin: 0 0 26px;
+    display: block;
+    margin: 0 0 12px;
     font-size: 20px;
     color: #51585d;
 }
 
-.network strong {
-    color: #252b30;
-}
-
-/* =========================
-   ADDRESS
-========================= */
+/* ADDRESS */
 
 .address-label {
     margin: 0 0 16px;
@@ -311,9 +302,7 @@ button {
     color: #a2a8ac;
 }
 
-/* =========================
-   REVIEW DETAILS
-========================= */
+/* REVIEW DETAILS */
 
 .review-title {
     margin: 66px 0 27px;
@@ -347,10 +336,11 @@ button {
 }
 
 .review-value {
-    padding-right: 36px;
+    padding: 15px 36px 15px 10px;
     text-align: right;
     color: #33383d;
     font-size: 20px;
+    overflow-wrap: anywhere;
 }
 
 .usdt-icon {
@@ -364,13 +354,11 @@ button {
     border-radius: 50%;
     background: #20c9b5;
     color: white;
-    font-size: 21px;
+    font-size: 16px;
     font-weight: 700;
 }
 
-/* =========================
-   PROCEED
-========================= */
+/* PROCEED */
 
 .proceed {
     margin-top: 25px;
@@ -388,9 +376,7 @@ button {
     background: #397dcc;
 }
 
-/* =========================
-   RESULT NOTICE
-========================= */
+/* RESULT NOTICE */
 
 .result {
     display: none;
@@ -423,9 +409,7 @@ button {
     font-weight: 700;
 }
 
-/* =========================
-   CHAT BUTTON
-========================= */
+/* CHAT BUTTON */
 
 .chat {
     position: fixed;
@@ -462,9 +446,7 @@ button {
     border-radius: 2px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -518,8 +500,14 @@ button {
 
     .payment-select select {
         height: 56px;
-        padding-left: 20px;
-        font-size: 18px;
+        padding-left: 15px;
+        font-size: 16px;
+    }
+
+    #networkSelect {
+        height: 56px;
+        padding-left: 15px;
+        font-size: 16px;
     }
 
     .charge-notice {
@@ -529,7 +517,7 @@ button {
 
     .amount-input {
         height: 70px;
-        padding: 0 20px;
+        padding: 0 12px;
         font-size: 20px;
     }
 
@@ -575,19 +563,19 @@ button {
     }
 
     .review-name {
-        padding-left: 20px;
-        font-size: 17px;
+        padding-left: 15px;
+        font-size: 15px;
     }
 
     .review-value {
-        padding-right: 20px;
-        font-size: 16px;
+        padding-right: 15px;
+        font-size: 15px;
     }
 
     .usdt-icon {
         width: 34px;
         height: 34px;
-        margin-right: 20px;
+        margin-right: 15px;
     }
 
     .proceed {
@@ -669,24 +657,39 @@ button {
 
         <div class="card-content">
 
+            <!-- PAYMENT METHOD -->
+
             <label class="label" for="paymentMethod">
                 Payment Method:
             </label>
 
             <div class="payment-select">
 
-                <select id="paymentMethod">
-                    <option value="USDT">Tether (USDT)</option>
+                <select id="paymentMethod" onchange="updatePaymentMethod()">
+                    <option value="BTC">Bitcoin (BTC)</option>
+                    <option value="ETH">Ethereum (ETH)</option>
+                    <option value="USDT" selected>Tether (USDT)</option>
+                    <option value="BNB">BNB (BNB)</option>
+                    <option value="SOL">Solana (SOL)</option>
+                    <option value="XRP">XRP (XRP)</option>
+                    <option value="DOGE">Dogecoin (DOGE)</option>
+                    <option value="LTC">Litecoin (LTC)</option>
+                    <option value="TRX">TRON (TRX)</option>
+                    <option value="USDC">USD Coin (USDC)</option>
                 </select>
 
                 <span class="select-arrow">&#8964;</span>
 
             </div>
 
+            <!-- CHARGE -->
+
             <div class="charge-notice" id="chargeNotice">
                 Complete initial deposit. Deposit $40 into your Fednow account
                 (No third party payment)
             </div>
+
+            <!-- AMOUNT -->
 
             <label class="label" for="amount">
                 Enter Amount:
@@ -700,6 +703,7 @@ button {
                     class="amount-input"
                     value="0"
                     min="0"
+                    max="10000000"
                     placeholder="0"
                     oninput="updateReview()"
                 >
@@ -717,12 +721,24 @@ button {
                 through your wallet details below:
             </p>
 
+            <!-- WALLET -->
+
             <h2 class="wallet-title">Wallet Address:</h2>
 
-            <p class="network">
+            <label class="network" for="networkSelect">
                 Network:
-                <strong>BSC (BEP20)</strong>
-            </p>
+            </label>
+
+            <div class="payment-select" style="margin-bottom:26px;">
+                <select id="networkSelect"
+                        onchange="updateSelectedNetwork()"
+                        aria-label="Select withdrawal network">
+                </select>
+
+                <span class="select-arrow">&#8964;</span>
+            </div>
+
+            <!-- ADDRESS -->
 
             <p class="address-label">Address:</p>
 
@@ -731,6 +747,8 @@ button {
                 class="address"
                 placeholder="Enter your wallet address"
             ></textarea>
+
+            <!-- REVIEW -->
 
             <h2 class="review-title">Review Details:</h2>
 
@@ -758,8 +776,8 @@ button {
 
                     <div class="review-name">Payment Method</div>
 
-                    <div>
-                        <div class="usdt-icon">T</div>
+                    <div class="review-value" id="reviewPaymentMethod">
+                        USDT
                     </div>
 
                 </div>
@@ -776,13 +794,13 @@ button {
 
             </div>
 
-            <button
-                class="proceed"
-                onclick="submitWithdrawal()">
+            <!-- PROCEED -->
+
+            <button class="proceed" onclick="submitWithdrawal()">
                 PROCEED
             </button>
 
-            <!-- WITHDRAWAL RESULT -->
+            <!-- RESULT -->
 
             <div class="result" id="result">
 
@@ -812,7 +830,7 @@ button {
 
 </main>
 
-<!-- CUSTOMER SUPPORT BUTTON -->
+<!-- CUSTOMER SUPPORT -->
 
 <button
     class="chat"
@@ -827,27 +845,148 @@ button {
 
 <script>
 
-/*
-==================================================
-EDITABLE SETTINGS
-==================================================
-*/
+/* EDITABLE WITHDRAWAL NOTICE */
 
 const withdrawalNotice =
     "Your request could not be approved at this time because the withdrawal requirements have not been completed.";
 
 
-/* =========================
-   UPDATE REVIEW
-========================= */
+/* EDITABLE CRYPTOCURRENCY NETWORKS
+   Add, remove or edit network names inside these arrays.
+   A network must be supported by the receiving wallet.
+*/
+
+const cryptoNetworks = {
+    BTC: [
+        "Bitcoin Network"
+    ],
+
+    ETH: [
+        "Ethereum (ERC20)",
+        "Arbitrum One",
+        "Optimism",
+        "Base",
+        "Polygon PoS"
+    ],
+
+    USDT: [
+        "BSC (BEP20)",
+        "Ethereum (ERC20)",
+        "TRON (TRC20)",
+        "Solana Network",
+        "Polygon PoS",
+        "Arbitrum One",
+        "Optimism",
+        "Avalanche C-Chain",
+        "Base",
+        "TON Network"
+    ],
+
+    BNB: [
+        "BNB Smart Chain (BEP20)",
+        "opBNB"
+    ],
+
+    SOL: [
+        "Solana Network"
+    ],
+
+    XRP: [
+        "XRP Ledger"
+    ],
+
+    DOGE: [
+        "Dogecoin Network"
+    ],
+
+    LTC: [
+        "Litecoin Network"
+    ],
+
+    TRX: [
+        "TRON (TRC20)"
+    ],
+
+    USDC: [
+        "Ethereum (ERC20)",
+        "Solana Network",
+        "BSC (BEP20)",
+        "Polygon PoS",
+        "Arbitrum One",
+        "Optimism",
+        "Avalanche C-Chain",
+        "Base",
+        "Stellar Network"
+    ]
+};
+
+
+/* POPULATE NETWORK DROPDOWN */
+
+function populateNetworks(method) {
+
+    const networkSelect =
+        document.getElementById("networkSelect");
+
+    const networks = cryptoNetworks[method] || [];
+
+    networkSelect.innerHTML = "";
+
+    networks.forEach(function(network) {
+
+        const option = document.createElement("option");
+
+        option.value = network;
+        option.textContent = network;
+
+        networkSelect.appendChild(option);
+
+    });
+
+    updateSelectedNetwork();
+}
+
+
+/* UPDATE SELECTED NETWORK */
+
+function updateSelectedNetwork() {
+
+    const networkSelect =
+        document.getElementById("networkSelect");
+
+    const networkName =
+        document.getElementById("networkName");
+
+    if (networkName && networkSelect) {
+        networkName.textContent = networkSelect.value;
+    }
+}
+
+
+/* UPDATE PAYMENT METHOD */
+
+function updatePaymentMethod() {
+
+    const method =
+        document.getElementById("paymentMethod").value;
+
+    document.getElementById("reviewPaymentMethod")
+        .textContent = method;
+
+    populateNetworks(method);
+
+    updateReview();
+}
+
+
+/* UPDATE REVIEW */
 
 function updateReview() {
 
     const amountInput =
         document.getElementById("amount");
 
-    let amount =
-        parseFloat(amountInput.value);
+    let amount = parseFloat(amountInput.value);
 
     if (isNaN(amount) || amount < 0) {
         amount = 0;
@@ -863,9 +1002,7 @@ function updateReview() {
 }
 
 
-/* =========================
-   SUBMIT WITHDRAWAL
-========================= */
+/* SUBMIT WITHDRAWAL */
 
 function submitWithdrawal() {
 
@@ -879,8 +1016,16 @@ function submitWithdrawal() {
         .value
         .trim();
 
-    if (amount <= 0) {
-        alert("Please enter a withdrawal amount.");
+    const network =
+        document.getElementById("networkSelect").value;
+
+    if (amount < 10 || amount > 10000000) {
+        alert("Please enter an amount between 10 USD and 10,000,000 USD.");
+        return;
+    }
+
+    if (!network) {
+        alert("Please select a network.");
         return;
     }
 
@@ -890,8 +1035,7 @@ function submitWithdrawal() {
     }
 
     document.getElementById("editableNotice")
-        .textContent =
-        withdrawalNotice;
+        .textContent = withdrawalNotice;
 
     document.getElementById("result")
         .classList.add("show");
@@ -904,9 +1048,7 @@ function submitWithdrawal() {
 }
 
 
-/* =========================
-   CUSTOMER SUPPORT
-========================= */
+/* CUSTOMER SUPPORT */
 
 function openSupport() {
 
@@ -933,9 +1075,7 @@ function openSupport() {
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 function goHome() {
     window.location.href = "index.html";
@@ -954,6 +1094,11 @@ function goBack() {
 function goHistory() {
     window.location.href = "transactions.html";
 }
+
+
+/* INITIALIZE SELECTED METHOD */
+
+updatePaymentMethod();
 
 </script>
 
