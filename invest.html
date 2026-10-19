@@ -4,178 +4,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invest Now | Fednow Shares</title>
+
+    <title>Investment Plans | FedNow Shares</title>
+    <meta name="theme-color" content="#103570">
+    <meta name="description" content="View available investment plans on FedNow Shares. Review the plan details and terms before proceeding.">
 
     <style>
+        :root {
+            --navy: #103570;
+            --blue: #528fe0;
+            --light-blue: #edf4ff;
+            --background: #f3f7fb;
+            --text: #34445c;
+            --muted: #778395;
+            --border: #e3eaf3;
+            --white: #ffffff;
+        }
+
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            background: #ffffff;
-            color: #555b61;
+            background: var(--background);
+            color: var(--text);
             font-family: Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
         .topbar {
-            min-height: 75px;
-            padding: 0 22px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            min-height: 72px;
+            padding: 12px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            border-bottom: 1px solid #eeeeee;
-            background: #ffffff;
+            gap: 18px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 14px rgba(16, 53, 112, 0.04);
         }
 
-        .back {
-            color: #7395b4;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--navy);
+            font-size: 18px;
+            font-weight: 800;
             text-decoration: none;
-            font-size: 24px;
+            white-space: nowrap;
         }
 
-        .home {
+        .brand-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 39px;
+            height: 39px;
+            border-radius: 11px;
+            background: var(--navy);
+            color: white;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-link,
+        .home-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 42px;
-            border-radius: 5px;
-            background: #568bd0;
-            color: white;
             text-decoration: none;
-            font-size: 23px;
+            font-weight: 700;
+            transition: 0.2s ease;
         }
 
-        .language {
-            font-size: 15px;
-            color: #333333;
-        }
-
-        .profile {
+        .back-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            color: var(--navy);
+            background: var(--light-blue);
             font-size: 22px;
-            color: #444444;
+        }
+
+        .back-link:hover {
+            background: #dce9fc;
+        }
+
+        .home-link {
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 9px;
+            background: var(--navy);
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .home-link:hover {
+            background: #19488c;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 36px 22px 45px;
+        }
+
+        .page-heading {
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #e5efff;
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .page-heading h1 {
+            margin: 0 0 12px;
+            color: var(--navy);
+            font-size: clamp(27px, 4vw, 36px);
+            line-height: 1.2;
+        }
+
+        .page-heading p {
+            max-width: 560px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
         }
 
         .plans {
-            width: 100%;
-            max-width: 480px;
-            margin: 28px auto;
-            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            align-items: stretch;
         }
 
         .plan-card {
             position: relative;
-            border: 2px solid #16375d;
-            border-radius: 12px;
-            padding: 48px 31px 40px;
-            margin-bottom: 28px;
-            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 28px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            box-shadow: 0 7px 25px rgba(16, 53, 112, 0.055);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .plan-badge {
-            position: absolute;
-            top: 13px;
-            right: 13px;
-            padding: 7px 10px;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 7px;
-            background: linear-gradient(110deg, #8050db, #ed4b86);
+        .plan-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(16, 53, 112, 0.09);
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--navy);
+        }
+
+        .plan-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .plan-icon {
-            font-size: 45px;
-            margin-bottom: 26px;
-            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
+            border-radius: 15px;
+            background: var(--light-blue);
+            font-size: 27px;
+        }
+
+        .plan-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 11px;
+            border-radius: 7px;
+            background: var(--navy);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
         }
 
         .plan-title {
-            font-size: 30px;
-            font-weight: 400;
-            margin: 0 0 5px;
-            color: #555b61;
+            margin: 0 0 7px;
+            color: var(--navy);
+            font-size: 25px;
+            font-weight: 800;
         }
 
         .plan-rate {
-            color: #c46c91;
-            font-size: 16px;
-            margin-bottom: 42px;
+            display: inline-block;
+            margin-bottom: 24px;
+            color: #2865b3;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .rate-note {
+            margin: -15px 0 20px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
         }
 
         .details {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 25px;
-            font-size: 16px;
+            gap: 14px;
+            padding: 15px 0;
+            border-bottom: 1px solid #edf1f6;
+            font-size: 14px;
+        }
+
+        .details:last-of-type {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--muted);
+            line-height: 1.5;
         }
 
         .detail-value {
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 700;
             text-align: right;
-            color: #4d5055;
         }
 
         .amount {
-            background: #83c8be;
-            color: #354c4b;
-            padding: 7px 12px;
-            border-radius: 12px;
+            display: inline-block;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: #e8f1ff;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 800;
             white-space: nowrap;
         }
 
         .invest-button {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             width: 100%;
-            min-height: 56px;
-            margin-top: 45px;
+            min-height: 51px;
+            margin-top: auto;
+            padding: 14px 18px;
             border: none;
-            border-radius: 32px;
-            background: #103570;
-            color: #ffffff;
+            border-radius: 10px;
+            background: var(--navy);
+            color: var(--white);
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.13);
-            transition: background 0.2s ease;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            text-align: center;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .invest-button:hover {
             background: #19488c;
+            transform: translateY(-1px);
+        }
+
+        .button-check {
+            margin-right: 9px;
+            font-size: 17px;
         }
 
         .disclaimer {
-            margin: 0 3px 24px;
-            color: #737982;
+            margin-top: 28px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--muted);
             font-size: 12px;
-            line-height: 1.6;
+            line-height: 1.8;
             text-align: center;
         }
 
-        @media (max-width: 380px) {
+        .disclaimer strong {
+            color: var(--text);
+        }
+
+        .footer {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            background: var(--white);
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (min-width: 900px) {
+            .plans {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
             .topbar {
+                min-height: 65px;
+                padding: 10px 15px;
+                gap: 8px;
+            }
+
+            .brand {
+                gap: 8px;
+                font-size: 15px;
+            }
+
+            .brand-icon {
+                width: 34px;
+                height: 34px;
+                border-radius: 9px;
+                font-size: 18px;
+            }
+
+            .top-actions {
+                gap: 7px;
+            }
+
+            .back-link {
+                width: 37px;
+                height: 37px;
+            }
+
+            .home-link {
+                min-height: 37px;
                 padding: 0 12px;
+                font-size: 12px;
+            }
+
+            .page-container {
+                padding: 28px 14px 32px;
+            }
+
+            .page-heading {
+                margin-bottom: 22px;
+            }
+
+            .page-heading p {
+                font-size: 13px;
+            }
+
+            .plans {
+                grid-template-columns: 1fr;
+                gap: 17px;
             }
 
             .plan-card {
-                padding: 45px 20px 35px;
+                padding: 23px 20px;
+                border-radius: 14px;
+            }
+
+            .plan-header {
+                margin-bottom: 21px;
             }
 
             .plan-title {
-                font-size: 27px;
+                font-size: 23px;
             }
 
             .details {
-                font-size: 14px;
+                font-size: 13px;
+            }
+
+            .detail-value {
+                font-size: 12px;
             }
 
             .amount {
-                padding: 6px 8px;
+                padding: 7px 8px;
+                font-size: 12px;
+            }
+
+            .invest-button {
+                margin-top: 20px;
+            }
+
+            .disclaimer {
+                padding: 16px;
+                font-size: 11px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
             }
         }
     </style>
@@ -184,173 +441,227 @@
 <body>
 
     <header class="topbar">
-        <a class="back" href="index.html" aria-label="Go back">←</a>
-        <a class="home" href="index.html" aria-label="Home">⌂</a>
-        <span class="language">English ⌄</span>
-        <span class="profile" aria-label="Profile">♙</span>
+        <a class="brand" href="home.html" aria-label="FedNow Shares home">
+            <span class="brand-icon" aria-hidden="true">F</span>
+            <span>FedNow Shares</span>
+        </a>
+
+        <nav class="top-actions" aria-label="Main navigation">
+            <a class="back-link" href="javascript:history.back()" aria-label="Go back">←</a>
+            <a class="home-link" href="home.html">⌂ Home</a>
+        </nav>
     </header>
 
-    <main class="plans">
+    <main class="page-container">
 
-        <!-- PLAN 1: DAILY PLAN -->
-        <section class="plan-card">
-            <span class="plan-badge">DAILY</span>
-            <div class="plan-icon" aria-hidden="true">💰</div>
-
-            <h1 class="plan-title">Daily Plan</h1>
-            <div class="plan-rate">Daily 15%</div>
-
-            <div class="details">
-                <span>Investment</span>
-                <span class="detail-value amount">$50–$2,000</span>
-            </div>
-
-            <div class="details">
-                <span>Capital Back</span>
-                <span class="detail-value">Yes</span>
-            </div>
-
-            <div class="details">
-                <span>Return Type</span>
-                <span class="detail-value">Period</span>
-            </div>
-
-            <div class="details">
-                <span>Number of Period</span>
-                <span class="detail-value">1 Time</span>
-            </div>
-
-            <div class="details">
-                <span>Profit Withdraw</span>
-                <span class="detail-value">Anytime</span>
-            </div>
-
-            <a class="invest-button" href="deposit.html">
-                ✓ &nbsp; INVEST NOW
-            </a>
+        <section class="page-heading">
+            <span class="eyebrow">INVESTMENT OPTIONS</span>
+            <h1>Choose Your Investment Plan</h1>
+            <p>
+                Review the available plans, investment amounts, stated rates,
+                and conditions before deciding whether to proceed.
+            </p>
         </section>
 
-        <!-- PLAN 2: WEEKLY PLAN -->
-        <section class="plan-card">
-            <span class="plan-badge">WEEKLY</span>
-            <div class="plan-icon" aria-hidden="true">💰</div>
+        <section class="plans" aria-label="Available investment plans">
 
-            <h2 class="plan-title">Weekly Plan</h2>
-            <div class="plan-rate">Daily 25%</div>
+            <!-- PLAN 1: DAILY -->
+            <article class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-icon" aria-hidden="true">💰</div>
+                    <span class="plan-badge">DAILY</span>
+                </div>
 
-            <div class="details">
-                <span>Investment</span>
-                <span class="detail-value amount">$100–$5,000</span>
-            </div>
+                <h2 class="plan-title">Daily Plan</h2>
+                <div class="plan-rate">Advertised rate: 15% daily</div>
+                <p class="rate-note">
+                    Review the applicable terms and risks before proceeding.
+                </p>
 
-            <div class="details">
-                <span>Capital Back</span>
-                <span class="detail-value">Yes</span>
-            </div>
+                <div class="details">
+                    <span class="detail-label">Investment</span>
+                    <span class="amount">$50–$2,000</span>
+                </div>
 
-            <div class="details">
-                <span>Return Type</span>
-                <span class="detail-value">Period</span>
-            </div>
+                <div class="details">
+                    <span class="detail-label">Capital Back</span>
+                    <span class="detail-value">Yes (as stated)</span>
+                </div>
 
-            <div class="details">
-                <span>Number of Period</span>
-                <span class="detail-value">7 Time</span>
-            </div>
+                <div class="details">
+                    <span class="detail-label">Return Type</span>
+                    <span class="detail-value">Period</span>
+                </div>
 
-            <div class="details">
-                <span>Profit Withdraw</span>
-                <span class="detail-value">Anytime</span>
-            </div>
+                <div class="details">
+                    <span class="detail-label">Number of Periods</span>
+                    <span class="detail-value">1 time</span>
+                </div>
 
-            <a class="invest-button" href="deposit.html">
-                ✓ &nbsp; INVEST NOW
-            </a>
+                <div class="details">
+                    <span class="detail-label">Profit Withdrawal</span>
+                    <span class="detail-value">Anytime (as stated)</span>
+                </div>
+
+                <a class="invest-button" href="deposit.html">
+                    <span class="button-check" aria-hidden="true">✓</span>
+                    CONTINUE TO DEPOSIT
+                </a>
+            </article>
+
+            <!-- PLAN 2: WEEKLY -->
+            <article class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-icon" aria-hidden="true">📈</div>
+                    <span class="plan-badge">WEEKLY</span>
+                </div>
+
+                <h2 class="plan-title">Weekly Plan</h2>
+                <div class="plan-rate">Advertised rate: 25% daily</div>
+                <p class="rate-note">
+                    Confirm how the stated daily rate applies over the plan period.
+                </p>
+
+                <div class="details">
+                    <span class="detail-label">Investment</span>
+                    <span class="amount">$100–$5,000</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Capital Back</span>
+                    <span class="detail-value">Yes (as stated)</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Return Type</span>
+                    <span class="detail-value">Period</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Number of Periods</span>
+                    <span class="detail-value">7 times</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Profit Withdrawal</span>
+                    <span class="detail-value">Anytime (as stated)</span>
+                </div>
+
+                <a class="invest-button" href="deposit.html">
+                    <span class="button-check" aria-hidden="true">✓</span>
+                    CONTINUE TO DEPOSIT
+                </a>
+            </article>
+
+            <!-- PLAN 3: MONTHLY -->
+            <article class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-icon" aria-hidden="true">🏦</div>
+                    <span class="plan-badge">MONTHLY</span>
+                </div>
+
+                <h2 class="plan-title">Monthly Plan</h2>
+                <div class="plan-rate">Advertised rate: 40% daily</div>
+                <p class="rate-note">
+                    Confirm the full calculation and withdrawal conditions first.
+                </p>
+
+                <div class="details">
+                    <span class="detail-label">Investment</span>
+                    <span class="amount">$200–$10,000</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Capital Back</span>
+                    <span class="detail-value">Yes (as stated)</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Return Type</span>
+                    <span class="detail-value">Period</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Number of Periods</span>
+                    <span class="detail-value">30 times</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Profit Withdrawal</span>
+                    <span class="detail-value">Anytime (as stated)</span>
+                </div>
+
+                <a class="invest-button" href="deposit.html">
+                    <span class="button-check" aria-hidden="true">✓</span>
+                    CONTINUE TO DEPOSIT
+                </a>
+            </article>
+
+            <!-- PLAN 4: PREMIUM -->
+            <article class="plan-card featured">
+                <div class="plan-header">
+                    <div class="plan-icon" aria-hidden="true">👑</div>
+                    <span class="plan-badge">PREMIUM</span>
+                </div>
+
+                <h2 class="plan-title">Premium Plan</h2>
+                <div class="plan-rate">Advertised rate: 60% daily</div>
+                <p class="rate-note">
+                    Review the plan's complete terms and potential investment risks.
+                </p>
+
+                <div class="details">
+                    <span class="detail-label">Investment</span>
+                    <span class="amount">$500–$20,000</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Capital Back</span>
+                    <span class="detail-value">Yes (as stated)</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Return Type</span>
+                    <span class="detail-value">Period</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Number of Periods</span>
+                    <span class="detail-value">Unlimited</span>
+                </div>
+
+                <div class="details">
+                    <span class="detail-label">Profit Withdrawal</span>
+                    <span class="detail-value">Anytime (as stated)</span>
+                </div>
+
+                <a class="invest-button" href="deposit.html">
+                    <span class="button-check" aria-hidden="true">✓</span>
+                    CONTINUE TO DEPOSIT
+                </a>
+            </article>
+
         </section>
 
-        <!-- PLAN 3: MONTHLY PLAN -->
-        <section class="plan-card">
-            <span class="plan-badge">MONTHLY</span>
-            <div class="plan-icon" aria-hidden="true">💰</div>
-
-            <h2 class="plan-title">Monthly Plan</h2>
-            <div class="plan-rate">Daily 40%</div>
-
-            <div class="details">
-                <span>Investment</span>
-                <span class="detail-value amount">$200–$10,000</span>
-            </div>
-
-            <div class="details">
-                <span>Capital Back</span>
-                <span class="detail-value">Yes</span>
-            </div>
-
-            <div class="details">
-                <span>Return Type</span>
-                <span class="detail-value">Period</span>
-            </div>
-
-            <div class="details">
-                <span>Number of Period</span>
-                <span class="detail-value">30 Time</span>
-            </div>
-
-            <div class="details">
-                <span>Profit Withdraw</span>
-                <span class="detail-value">Anytime</span>
-            </div>
-
-            <a class="invest-button" href="deposit.html">
-                ✓ &nbsp; INVEST NOW
-            </a>
-        </section>
-
-        <!-- PLAN 4: PREMIUM PLAN -->
-        <section class="plan-card">
-            <span class="plan-badge">PREMIUM</span>
-            <div class="plan-icon" aria-hidden="true">👑</div>
-
-            <h2 class="plan-title">Premium Plan</h2>
-            <div class="plan-rate">Daily 60%</div>
-
-            <div class="details">
-                <span>Investment</span>
-                <span class="detail-value amount">$500–$20,000</span>
-            </div>
-
-            <div class="details">
-                <span>Capital Back</span>
-                <span class="detail-value">Yes</span>
-            </div>
-
-            <div class="details">
-                <span>Return Type</span>
-                <span class="detail-value">Period</span>
-            </div>
-
-            <div class="details">
-                <span>Number of Period</span>
-                <span class="detail-value">Unlimited</span>
-            </div>
-
-            <div class="details">
-                <span>Profit Withdraw</span>
-                <span class="detail-value">Anytime</span>
-            </div>
-
-            <a class="invest-button" href="deposit.html">
-                ✓ &nbsp; INVEST NOW
-            </a>
-        </section>
-
-        <p class="disclaimer">
-            Investment on Fednow and returns are guaranteed.
-            We Publish accurate terms, guidelines, informations, and proper
-            knowledge before accepting deposits.
-        </p>
+        <aside class="disclaimer">
+            <strong>Important investment notice:</strong>
+            The rates and capital-return terms displayed above are plan descriptions,
+            not independently verified guarantees. Investment returns are not
+            inherently guaranteed, and you could lose some or all of your money.
+            Verify the business, applicable regulations, withdrawal conditions,
+            and complete terms before sending funds.
+        </aside>
 
     </main>
+
+    <footer class="footer">
+        © <span id="year"></span> FedNow Shares. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
 </html>
